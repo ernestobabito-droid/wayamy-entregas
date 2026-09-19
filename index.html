@@ -1,0 +1,6897 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#061A2D">
+
+<title>WAYAMY ENTREGAS</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --navy:#061A2D;
+    --dark:#08233B;
+    --blue:#0F4C75;
+    --blue2:#1B75BC;
+    --light:#4DB6E8;
+    --verylight:#EAF6FF;
+    --white:#fff;
+    --gray:#6B7C8F;
+    --border:#D9E7F0;
+    --green:#16A36A;
+    --red:#D64545;
+    --orange:#E98B2A;
+    --shadow:0 8px 30px rgba(6,26,45,.10);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#F4F8FB;
+    color:#102A43;
+}
+
+/* =========================
+   TEMA ESCURO
+========================= */
+body.dark-mode{
+    background:#07111F;
+    color:#E8F1F7;
+}
+body.dark-mode .topbar,
+body.dark-mode .stat-card,
+body.dark-mode .panel,
+body.dark-mode .delivery-card,
+body.dark-mode .modal-box{
+    background:#0D1B2B;
+    border-color:#21384B;
+}
+body.dark-mode .topbar{
+    border-bottom-color:#21384B;
+}
+body.dark-mode .page-title h2,
+body.dark-mode .page-header h1,
+body.dark-mode .stat-card strong,
+body.dark-mode .panel-header h3,
+body.dark-mode .modal-header h3,
+body.dark-mode .info-box h4{
+    color:#EAF6FF;
+}
+body.dark-mode .page-header p,
+body.dark-mode .stat-card span,
+body.dark-mode .field label,
+body.dark-mode .panel-body,
+body.dark-mode .info-line,
+body.dark-mode .login-extra{
+    color:#AFC3D1;
+}
+body.dark-mode .field input,
+body.dark-mode .field select,
+body.dark-mode .field textarea{
+    background:#081624;
+    color:#EAF6FF;
+    border-color:#2A4358;
+}
+body.dark-mode th{
+    background:#102538;
+    color:#BBD0DD;
+}
+body.dark-mode td{
+    border-bottom-color:#21384B;
+}
+body.dark-mode tr:hover td{
+    background:#102131;
+}
+body.dark-mode .info-box{
+    background:#0A1928;
+    border-color:#21384B;
+}
+body.dark-mode .step{
+    background:#142536;
+    color:#AFC3D1;
+}
+body.dark-mode .btn-secondary,
+body.dark-mode .notification-btn,
+body.dark-mode .menu-toggle{
+    background:#153149;
+    color:#DDF1FC;
+}
+body.dark-mode .close-modal{
+    background:#172A3A;
+    color:#EAF6FF;
+}
+body.dark-mode .modal-footer{
+    border-top-color:#21384B;
+}
+body.dark-mode .modal-header{
+    border-bottom-color:#21384B;
+}
+
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#061A2D,#0F4C75);
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.logo{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#0F4C75,#1B75BC);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:900;
+    margin:0 auto 15px;
+}
+
+.login-box h1{
+    text-align:center;
+    color:var(--navy);
+    font-size:27px;
+}
+
+.login-box .subtitle{
+    text-align:center;
+    color:var(--gray);
+    margin:7px 0 25px;
+}
+
+.role-tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-bottom:20px;
+}
+
+.role-tab{
+    border:1px solid var(--border);
+    background:#F5FAFD;
+    padding:11px 5px;
+    border-radius:10px;
+    color:var(--blue);
+    font-weight:bold;
+}
+
+.role-tab.active{
+    background:var(--blue);
+    color:#fff;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
+    color:#345;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    border:1px solid #CBDCE7;
+    border-radius:10px;
+    padding:12px;
+    outline:none;
+    background:#fff;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--blue2);
+    box-shadow:0 0 0 3px rgba(27,117,188,.10);
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:12px 16px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--blue);
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background:var(--blue2);
+}
+
+.btn-secondary{
+    background:#EAF6FF;
+    color:var(--blue);
+}
+
+.btn-success{
+    background:var(--green);
+    color:#fff;
+}
+
+.btn-danger{
+    background:var(--red);
+    color:#fff;
+}
+
+.btn-warning{
+    background:var(--orange);
+    color:#fff;
+}
+
+.btn-full{
+    width:100%;
+}
+
+.login-extra{
+    text-align:center;
+    margin-top:18px;
+    color:var(--gray);
+    font-size:13px;
+}
+
+.login-extra button{
+    background:none;
+    border:0;
+    color:var(--blue2);
+    font-weight:bold;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    display:none;
+    min-height:100vh;
+}
+
+.app-layout{
+    min-height:100vh;
+    display:flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:265px;
+    background:var(--navy);
+    color:#fff;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    z-index:1000;
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease;
+}
+
+.sidebar-header{
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand .logo-small{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:var(--blue2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.brand strong{
+    display:block;
+    font-size:16px;
+}
+
+.brand small{
+    color:#AFC8D9;
+}
+
+.sidebar-menu{
+    flex:1;
+    overflow-y:auto;
+    padding:12px;
+}
+
+.menu-section{
+    color:#78A4C1;
+    font-size:11px;
+    text-transform:uppercase;
+    font-weight:bold;
+    padding:12px 10px 6px;
+}
+
+.menu-item{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#DDEBF4;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:12px 13px;
+    border-radius:10px;
+    margin-bottom:3px;
+    text-align:left;
+}
+
+.menu-item:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.menu-item.active{
+    background:var(--blue);
+    color:#fff;
+}
+
+.menu-icon{
+    width:24px;
+    text-align:center;
+}
+
+.sidebar-footer{
+    padding:14px;
+    border-top:1px solid rgba(255,255,255,.10);
+}
+
+.user-mini{
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,255,255,.06);
+    margin-bottom:9px;
+}
+
+.user-mini strong{
+    display:block;
+    font-size:13px;
+}
+
+.user-mini span{
+    color:#AFC8D9;
+    font-size:11px;
+}
+
+.logout-btn{
+    width:100%;
+    border:1px solid rgba(255,255,255,.15);
+    background:transparent;
+    color:#fff;
+    padding:10px;
+    border-radius:9px;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:999;
+}
+
+.menu-overlay.show{
+    display:block;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:265px;
+    width:calc(100% - 265px);
+    min-height:100vh;
+}
+
+.topbar{
+    height:68px;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.menu-toggle{
+    display:none;
+    border:0;
+    background:#EAF6FF;
+    color:var(--blue);
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    font-size:21px;
+}
+
+.page-title h2{
+    font-size:20px;
+    color:var(--navy);
+}
+
+.page-title small{
+    color:var(--gray);
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.notification-btn{
+    border:0;
+    background:#EAF6FF;
+    color:var(--blue);
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    position:relative;
+}
+
+.notification-count{
+    position:absolute;
+    top:-3px;
+    right:-3px;
+    background:var(--red);
+    color:#fff;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.status-pill{
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.status-active{
+    background:#DFF7EC;
+    color:#087A4D;
+}
+
+.status-inactive{
+    background:#FDE5E5;
+    color:#A92828;
+}
+
+.content{
+    padding:25px;
+    max-width:1500px;
+    margin:auto;
+}
+
+/* =========================
+   PAGES
+========================= */
+
+.app-page{
+    display:none;
+}
+
+.app-page.active{
+    display:block;
+}
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.page-header h1{
+    font-size:24px;
+    color:var(--navy);
+}
+
+.page-header p{
+    color:var(--gray);
+    margin-top:4px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.stat-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:18px;
+    box-shadow:var(--shadow);
+}
+
+.stat-card .stat-icon{
+    width:42px;
+    height:42px;
+    background:#EAF6FF;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    margin-bottom:13px;
+}
+
+.stat-card strong{
+    display:block;
+    font-size:25px;
+    color:var(--navy);
+}
+
+.stat-card span{
+    color:var(--gray);
+    font-size:12px;
+}
+
+.panel{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:15px;
+    box-shadow:var(--shadow);
+    margin-bottom:20px;
+}
+
+.panel-header{
+    padding:16px 18px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.panel-header h3{
+    color:var(--navy);
+    font-size:16px;
+}
+
+.panel-body{
+    padding:18px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.form-grid .full{
+    grid-column:1/-1;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #E6EEF3;
+    text-align:left;
+    font-size:13px;
+}
+
+th{
+    background:#F5FAFD;
+    color:#496477;
+    font-size:11px;
+    text-transform:uppercase;
+}
+
+tr:hover td{
+    background:#FAFCFE;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.badge-blue{
+    background:#E2F1FC;
+    color:#0F5F95;
+}
+
+.badge-green{
+    background:#DFF7EC;
+    color:#087A4D;
+}
+
+.badge-orange{
+    background:#FFF0DE;
+    color:#A75A08;
+}
+
+.badge-red{
+    background:#FDE5E5;
+    color:#A92828;
+}
+
+.empty{
+    text-align:center;
+    padding:35px;
+    color:var(--gray);
+}
+
+/* =========================
+   DELIVERY
+========================= */
+
+.delivery-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:17px;
+    margin-bottom:12px;
+}
+
+.delivery-head{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.delivery-id{
+    color:var(--blue);
+    font-weight:bold;
+}
+
+.delivery-sections{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.info-box{
+    background:#F7FBFD;
+    border:1px solid #E1EDF3;
+    border-radius:10px;
+    padding:12px;
+}
+
+.info-box h4{
+    font-size:12px;
+    color:var(--blue);
+    margin-bottom:8px;
+}
+
+.info-line{
+    font-size:12px;
+    margin:5px 0;
+}
+
+.info-line strong{
+    color:#29475D;
+}
+
+.call-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    border:0;
+    background:#DFF7EC;
+    color:#087A4D;
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:bold;
+    text-decoration:none;
+    margin-top:7px;
+}
+
+/* =========================
+   STEPS
+========================= */
+
+.steps{
+    display:flex;
+    gap:5px;
+    overflow-x:auto;
+    margin:15px 0;
+}
+
+.step{
+    min-width:125px;
+    padding:10px;
+    border-radius:9px;
+    background:#EEF4F8;
+    color:#708394;
+    font-size:11px;
+    text-align:center;
+}
+
+.step.done{
+    background:#DFF7EC;
+    color:#087A4D;
+}
+
+.step.current{
+    background:#E2F1FC;
+    color:#0F5F95;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(3,17,29,.55);
+    z-index:2000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:650px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:17px;
+    box-shadow:0 20px 70px rgba(0,0,0,.25);
+}
+
+.modal-header{
+    padding:17px 20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.modal-header h3{
+    color:var(--navy);
+}
+
+.close-modal{
+    border:0;
+    background:#F1F5F8;
+    width:35px;
+    height:35px;
+    border-radius:8px;
+    font-size:18px;
+}
+
+.modal-body{
+    padding:20px;
+}
+
+.modal-footer{
+    padding:15px 20px;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:var(--navy);
+    color:#fff;
+    padding:13px 17px;
+    border-radius:10px;
+    z-index:3000;
+    box-shadow:var(--shadow);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.25s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* =========================
+   GESTOR - ORGANIZAÇÃO PROFISSIONAL
+========================= */
+.dashboard-hero{
+    background:linear-gradient(135deg,#061A2D,#0F4C75);
+    color:#fff;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:0 12px 35px rgba(6,26,45,.18);
+}
+.dashboard-hero h1{font-size:25px;margin-bottom:6px}
+.dashboard-hero p{color:#D7E8F3;font-size:13px}
+.dashboard-section-title{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}
+.dashboard-section-title h3{font-size:16px;color:var(--navy)}
+.dashboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.dashboard-op{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.dashboard-op-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dashboard-op strong{font-size:22px;color:var(--navy)}
+.dashboard-op small{color:var(--gray)}
+.invoice-actions{display:flex;gap:7px;flex-wrap:wrap}
+.invoice-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.invoice-mini{background:#F7FBFD;border:1px solid #E1EDF3;border-radius:10px;padding:12px}
+.invoice-mini span{display:block;color:var(--gray);font-size:10px;text-transform:uppercase;margin-bottom:5px}
+.invoice-mini strong{font-size:13px;color:var(--navy)}
+.invoice-block{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.invoice-block h4{background:#F5FAFD;padding:11px 13px;color:var(--blue);font-size:12px}
+.invoice-block .invoice-block-body{padding:13px}
+.invoice-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;margin:6px 0}
+.invoice-history{border-left:2px solid #D9E7F0;margin:10px 0 0 7px;padding-left:14px}
+.invoice-history-item{position:relative;margin-bottom:12px;font-size:12px}
+.invoice-history-item:before{content:"";position:absolute;left:-20px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--blue2)}
+@media(max-width:900px){.dashboard-grid{grid-template-columns:1fr 1fr}.invoice-summary{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.dashboard-grid{grid-template-columns:1fr}.invoice-summary{grid-template-columns:1fr 1fr}.invoice-row{grid-template-columns:1fr}}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid-3{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:850px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        box-shadow:10px 0 30px rgba(0,0,0,.25);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+        width:100%;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .topbar{
+        padding:0 14px;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .top-actions .status-pill{
+        display:none;
+    }
+
+    .grid-2,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .delivery-sections{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:13px;
+    }
+
+    .stat-card strong{
+        font-size:21px;
+    }
+
+    .page-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .grid-3{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        height:62px;
+    }
+
+    .page-title h2{
+        font-size:16px;
+    }
+
+    .login-box{
+        padding:22px;
+    }
+}
+
+/* ===== WAYAMY CUSTOMIZAÇÕES ===== */
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)),url("fundo.png") center/cover no-repeat;z-index:-2;pointer-events:none}
+body.dark-mode::before{background:linear-gradient(rgba(5,15,27,.42),rgba(5,15,27,.50)),url("fundo.png") center/cover no-repeat}
+.login-logo-img{width:82px;height:82px;object-fit:contain;display:block;margin:0 auto 15px;border-radius:18px}
+.brand-logo-img{width:44px;height:44px;object-fit:contain;border-radius:10px}
+.brand-logo-img.small{width:42px;height:42px}
+.security-note{font-size:12px;color:#718;margin:0 0 14px}
+.invoice-actions{display:flex;gap:6px;flex-wrap:wrap}
+@media(max-width:600px){
+ .table-wrap{overflow:visible!important}
+ .table-wrap table,.table-wrap thead,.table-wrap tbody,.table-wrap tr,.table-wrap td{display:block!important;width:100%!important}
+ .table-wrap thead{display:none!important}
+ .table-wrap tr{margin:0 0 12px;border:1px solid var(--border);border-radius:12px;padding:6px;background:var(--panel,#fff)}
+ .table-wrap td{border:0!important;border-bottom:1px solid var(--border)!important;padding:10px 8px;text-align:right;min-height:40px;overflow-wrap:anywhere}
+ .table-wrap td:last-child{border-bottom:0!important}
+ .table-wrap td[data-label]::before{content:attr(data-label);display:inline-block;float:left;font-weight:700;text-align:left;margin-right:10px;color:#496477;max-width:45%}
+ .table-wrap .btn{margin:3px 0 3px 4px}
+ .invoice-actions{justify-content:flex-end}
+}
+body.dark-mode .table-wrap tr,body.dark-mode .panel,body.dark-mode .login-box{background:#0d1b2b!important;color:#e7f0f7}
+body.dark-mode .field input,body.dark-mode .field select,body.dark-mode .field textarea{background:#111f30;color:#e7f0f7;border-color:#294155}
+body.dark-mode .field label,body.dark-mode .security-note{color:#b8c8d6}
+body.dark-mode .table-wrap td[data-label]::before{color:#b8c8d6}
+
+/* ===== AJUSTE VISUAL FINAL ===== */
+.btn-secondary, .notification-btn, .menu-toggle{
+    background:rgba(255,255,255,.50)!important;
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+    border:1px solid rgba(255,255,255,.55);
+}
+.dashboard-op, .panel, .stat-card, .delivery-card, .info-box, .invoice-mini{
+    background:rgba(255,255,255,.58);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+}
+body.dark-mode .dashboard-op, body.dark-mode .panel, body.dark-mode .stat-card, body.dark-mode .delivery-card, body.dark-mode .info-box, body.dark-mode .invoice-mini{
+    background:rgba(13,27,43,.62)!important;
+}
+body.dark-mode .btn-secondary, body.dark-mode .notification-btn, body.dark-mode .menu-toggle{
+    background:rgba(21,49,73,.55)!important;
+    border-color:rgba(255,255,255,.14);
+}
+.theme-top-btn{min-width:42px!important;width:42px;height:40px;padding:0!important;display:inline-flex;align-items:center;justify-content:center}
+
+@media(max-width:850px){
+    .content{width:100%;min-width:0;overflow-x:hidden}
+    .panel,.stat-card,.dashboard-op,.delivery-card,.modal-box,.login-box{max-width:100%;min-width:0}
+    .panel-body,.panel-header{min-width:0}
+    .form-grid,.grid-2,.grid-3,.cards,.delivery-sections,.invoice-summary{width:100%;min-width:0}
+    .field input,.field select,.field textarea{width:100%;max-width:100%;min-width:0}
+    .top-actions{gap:6px}
+}
+@media(max-width:600px){
+    body{overflow-x:hidden}
+    .content{padding:12px;overflow-x:hidden}
+    .cards{grid-template-columns:1fr!important}
+    .invoice-summary{grid-template-columns:1fr!important}
+    .dashboard-grid{grid-template-columns:1fr!important}
+    .dashboard-section-title{align-items:flex-start;gap:8px;flex-wrap:wrap}
+    .panel-header{flex-wrap:wrap;gap:8px}
+    .btn{max-width:100%;white-space:normal}
+    .invoice-actions{width:100%;justify-content:flex-start}
+    .invoice-actions .btn{flex:1 1 auto}
+    .modal{padding:10px!important}
+    .modal-box{width:100%!important;max-width:100%!important;max-height:calc(100vh - 20px)!important;margin:0!important}
+    .modal-body{max-width:100%;overflow-x:hidden}
+    .modal-footer{flex-wrap:wrap}
+    .modal-footer .btn{flex:1 1 140px}
+    .table-wrap table{min-width:0!important}
+    .table-wrap td{word-break:break-word}
+}
+
+/* ===== CORREÇÃO FINAL: FUNDO, TEMA E RESPONSIVIDADE ===== */
+.theme-floating-btn{
+ position:fixed; right:14px; bottom:14px; z-index:9998;
+ width:48px; height:48px; border-radius:50%; border:1px solid rgba(255,255,255,.55);
+ background:rgba(255,255,255,.55); color:#07111f; backdrop-filter:blur(10px);
+ -webkit-backdrop-filter:blur(10px); box-shadow:0 8px 24px rgba(0,0,0,.18);
+ font-size:20px; cursor:pointer; display:none;
+}
+body.dark-mode .theme-floating-btn{background:rgba(20,45,67,.65);color:#fff;border-color:rgba(255,255,255,.18)}
+.client-social-panel{position:relative;overflow:hidden}
+.client-social-panel .social-links-final{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.client-social-panel .social-links-final a{display:flex;align-items:center;justify-content:center;min-height:46px;text-decoration:none!important;font-weight:700}
+@media(max-width:600px){
+ .theme-floating-btn{display:flex;align-items:center;justify-content:center}
+ .client-social-panel .social-links-final{grid-template-columns:1fr}
+ .top-actions{flex-shrink:0}
+ .topbar{width:100%;max-width:100%;overflow:hidden}
+ .topbar-left,.top-actions{min-width:0}
+ .page-title{min-width:0;overflow:hidden}
+ .page-title h2,.page-title small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .panel,.modal-box,.login-box,.stat-card,.delivery-card,.dashboard-op,.info-box,.invoice-mini{width:100%!important;box-sizing:border-box}
+ .form-grid,.grid-2,.grid-3,.cards{grid-template-columns:1fr!important}
+ .actions{width:100%;flex-wrap:wrap}
+ .actions .btn{flex:1 1 140px}
+}
+
+
+/* =========================================================
+   CONTRASTE FINAL — TEXTO VISÍVEL NOS DOIS TEMAS
+========================================================= */
+body:not(.dark-mode) .btn,
+body:not(.dark-mode) button,
+body:not(.dark-mode) .menu-item,
+body:not(.dark-mode) .notification-btn,
+body:not(.dark-mode) .menu-toggle,
+body:not(.dark-mode) .role-tab{
+    text-shadow:none;
+}
+
+/* Botões comuns: texto sempre com contraste suficiente */
+.btn-primary,.btn-success,.btn-danger,.btn-warning,
+.menu-item.active,.logout-btn,.notification-count,
+.call-btn,.toast,.dashboard-hero{
+    color:#fff !important;
+}
+
+.btn-secondary,.notification-btn,.menu-toggle{
+    color:#0F4C75 !important;
+}
+
+.role-tab{
+    color:#0F4C75 !important;
+}
+.role-tab.active{
+    color:#fff !important;
+}
+
+/* Elementos de texto que estavam a usar variáveis escuras sobre fundos escuros */
+body.dark-mode .dashboard-section-title h3,
+body.dark-mode .dashboard-op strong,
+body.dark-mode .invoice-mini strong,
+body.dark-mode .page-title h2,
+body.dark-mode .page-header h1,
+body.dark-mode .panel-header h3,
+body.dark-mode .modal-header h3,
+body.dark-mode .delivery-id,
+body.dark-mode .info-box h4,
+body.dark-mode .invoice-block h4{
+    color:#EAF6FF !important;
+}
+
+body.dark-mode .dashboard-op,
+body.dark-mode .invoice-mini,
+body.dark-mode .invoice-block,
+body.dark-mode .invoice-block .invoice-block-body,
+body.dark-mode .table-wrap{
+    color:#E8F1F7;
+}
+
+body.dark-mode .dashboard-op small,
+body.dark-mode .invoice-mini span,
+body.dark-mode .page-title small,
+body.dark-mode .page-header p,
+body.dark-mode .stat-card span,
+body.dark-mode .empty,
+body.dark-mode .panel-body,
+body.dark-mode .info-line,
+body.dark-mode .dashboard-op small,
+body.dark-mode .invoice-row,
+body.dark-mode .invoice-history-item{
+    color:#BFD2DE !important;
+}
+
+body.dark-mode .info-line strong{
+    color:#EAF6FF !important;
+}
+
+body.dark-mode .dashboard-op,
+body.dark-mode .invoice-mini{
+    background:#0D1B2B !important;
+    border-color:#2A4358 !important;
+}
+
+body.dark-mode .invoice-mini,
+body.dark-mode .invoice-block h4,
+body.dark-mode .table-wrap{
+    background:#102538 !important;
+}
+
+body.dark-mode .invoice-block h4{
+    color:#DDF1FC !important;
+}
+
+body.dark-mode .badge-blue,
+body.dark-mode .badge-green,
+body.dark-mode .badge-orange,
+body.dark-mode .badge-red,
+body.dark-mode .status-active,
+body.dark-mode .status-inactive,
+body.dark-mode .step.done,
+body.dark-mode .step.current{
+    font-weight:700;
+}
+
+/* Inputs/selects/textareas */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode option{
+    color:#F2FAFF !important;
+    background:#081624 !important;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{
+    color:#91A9B9 !important;
+    opacity:1;
+}
+
+/* Links */
+a{color:#0F5F95;}
+body.dark-mode a{color:#72C7F5 !important;}
+
+/* Textos inline cinzentos que ficavam quase invisíveis no modo escuro */
+body.dark-mode [style*="color:#718"],
+body.dark-mode [style*="color: #718"],
+body.dark-mode [style*="color:#6B7C8F"],
+body.dark-mode [style*="color:var(--gray)"]{
+    color:#BFD2DE !important;
+}
+
+/* Tabelas e células */
+body.dark-mode table{color:#E8F1F7;}
+body.dark-mode td{color:#DCEBF4;}
+body.dark-mode th{color:#EAF6FF !important;}
+
+/* Botões pequenos/ações criados dinamicamente */
+body.dark-mode .actions button,
+body.dark-mode .invoice-actions button,
+body.dark-mode .delivery-card button,
+body.dark-mode .panel button{
+    text-shadow:none;
+}
+
+/* Não deixar texto branco desaparecer em botões claros */
+body:not(.dark-mode) .btn-secondary,
+body:not(.dark-mode) .notification-btn,
+body:not(.dark-mode) .menu-toggle{
+    background:#EAF6FF;
+    color:#0F4C75 !important;
+}
+
+
+
+/* AÇÕES DE CONTAS — VISÍVEIS NO TELEMÓVEL */
+@media (max-width: 760px){
+    .table-wrap{overflow-x:visible!important;}
+    .table-wrap table, .table-wrap thead, .table-wrap tbody, .table-wrap tr, .table-wrap th, .table-wrap td{display:block;width:100%;}
+    .table-wrap thead{display:none;}
+    .table-wrap tr{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;padding:10px;background:var(--white);}
+    body.dark-mode .table-wrap tr{background:#0D1B2B;}
+    .table-wrap td{border:0!important;padding:6px 8px!important;text-align:left!important;}
+    .table-wrap td::before{font-weight:700;display:inline-block;min-width:110px;margin-right:6px;}
+    .table-wrap td:nth-child(1)::before{content:"Nome: ";}
+    .table-wrap td:nth-child(2)::before{content:"Telefone: ";}
+    .table-wrap td:nth-child(3)::before{content:"Email/Disponibilidade: ";}
+    .table-wrap td:nth-child(4)::before{content:"Estado/Conta: ";}
+    .table-wrap td:nth-child(5)::before{content:"Ações: ";}
+    .table-wrap .invoice-actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
+}
+</style>
+</head>
+
+<body>
+<button id="themeFloatingBtn" class="theme-floating-btn" onclick="toggleTheme()" aria-label="Alternar tema">🌙</button>
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<section id="loginScreen">
+
+    <div class="login-box">
+
+        <img class="login-logo-img" src="logo.png" alt="WAYAMY ENTREGAS">
+
+        <h1>WAYAMY ENTREGAS</h1>
+        <p class="subtitle">Entregas rápidas, simples e seguras</p>
+
+        <div class="role-tabs">
+
+            <button class="role-tab active" data-role="client">
+                👤 Cliente
+            </button>
+
+            <button class="role-tab" data-role="driver">
+                🏍️ Motoboy
+            </button>
+
+            <button class="role-tab" data-role="manager">
+                🛡️ Gestor
+            </button>
+
+        </div>
+
+        <form id="loginForm">
+
+            <div class="field">
+                <label id="loginIdentifierLabel">Telefone ou Email</label>
+                <input id="loginIdentifier" required>
+            </div>
+
+            <div class="field">
+                <label>Palavra-passe</label>
+                <input id="loginPassword" type="password" required>
+            </div>
+
+            <button class="btn btn-primary btn-full">
+                ENTRAR
+            </button>
+
+        </form>
+
+        <div class="login-extra" id="createAccountArea">
+            Ainda não tens conta?
+            <button onclick="openRegister()">Criar conta</button>
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     APP
+========================================================= -->
+
+<div id="app">
+
+    <div class="app-layout">
+
+        <!-- OVERLAY -->
+        <div id="menuOverlay" class="menu-overlay"></div>
+
+        <!-- SIDEBAR -->
+        <aside id="sideMenu" class="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="brand">
+
+                    <img class="brand-logo-img small" src="logo.png" alt="WAYAMY ENTREGAS">
+
+                    <div>
+                        <strong>WAYAMY ENTREGAS</strong>
+                        <small id="sidebarRole">Cliente</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <nav id="sidebarMenu" class="sidebar-menu"></nav>
+
+            <div class="sidebar-footer">
+
+                <div class="user-mini">
+                    <strong id="sidebarUserName">Utilizador</strong>
+                    <span id="sidebarUserPhone">---</span>
+                </div>
+
+                <button class="logout-btn" onclick="logout()">
+                    ⇥ Terminar sessão
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-toggle"
+                        onclick="toggleMenu()"
+                        aria-label="Abrir menu">
+                        ☰
+                    </button>
+
+                    <div class="page-title">
+                        <h2 id="topTitle">Início</h2>
+                        <small id="topSubtitle">WAYAMY ENTREGAS</small>
+                    </div>
+
+                </div>
+
+                <div class="top-actions">
+
+                    <button
+                        class="notification-btn"
+                        onclick="navigate(currentRolePage('notifications'))">
+
+                        🔔
+
+                        <span
+                            id="notificationCount"
+                            class="notification-count">
+                            0
+                        </span>
+
+                    </button>
+
+                    <button class="notification-btn theme-top-btn" onclick="toggleTheme()" id="topThemeBtn" aria-label="Alternar tema">🌙</button>
+
+                </div>
+
+            </header>
+
+
+            <div id="content" class="content"></div>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3 id="modalTitle">Janela</h3>
+
+            <button
+                class="close-modal"
+                onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="modalBody" class="modal-body"></div>
+
+        <div id="modalFooter" class="modal-footer"></div>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   DATABASE LOCAL
+========================================================= */
+
+const STORAGE = {
+    users:"wayamy_users",
+    deliveries:"wayamy_deliveries",
+    notifications:"wayamy_notifications",
+    routes:"wayamy_routes",
+    settings:"wayamy_settings",
+    session:"wayamy_session"
+};
+
+function getData(key, fallback=[]){
+    try{
+        return JSON.parse(localStorage.getItem(key)) ?? fallback;
+    }catch{
+        return fallback;
+    }
+}
+
+function saveData(key,data){
+    localStorage.setItem(key,JSON.stringify(data));
+}
+
+
+/* =========================================================
+   CONFIGURAÇÃO INICIAL
+========================================================= */
+
+function initializeData(){
+
+    if(!localStorage.getItem(STORAGE.users)){
+        // Contas reais são criadas pelo utilizador. Nenhuma conta de demonstração é criada.
+        saveData(STORAGE.users,[]);
+    }
+
+    // Limpeza definitiva de contas/registos de demonstração de versões anteriores.
+    // Preserva contas reais criadas pelo utilizador.
+    const demoUserIds=["CLI-001","MOT-001"];
+    const demoUserNames=["Cliente Demo","Motoboy Demo"];
+    const demoUserEmails=["cliente@wayamy.com","motoboy@wayamy.com"];
+    const usersBeforeCleanup=getData(STORAGE.users,[]);
+    const usersAfterCleanup=usersBeforeCleanup.filter(u=>
+        !demoUserIds.includes(u.id) &&
+        !demoUserNames.includes(u.name) &&
+        !demoUserEmails.includes(u.email)
+    );
+    if(usersAfterCleanup.length!==usersBeforeCleanup.length){
+        saveData(STORAGE.users,usersAfterCleanup);
+    }
+
+    const deliveriesBeforeCleanup=getData(STORAGE.deliveries,[]);
+    const deliveriesAfterCleanup=deliveriesBeforeCleanup.filter(d=>{
+        const text=JSON.stringify(d||{}).toLowerCase();
+        return !text.includes("cliente demo") &&
+               !text.includes("motoboy demo") &&
+               !text.includes("cli-001") &&
+               !text.includes("mot-001") &&
+               !text.includes("cliente@wayamy.com") &&
+               !text.includes("motoboy@wayamy.com");
+    });
+    if(deliveriesAfterCleanup.length!==deliveriesBeforeCleanup.length){
+        saveData(STORAGE.deliveries,deliveriesAfterCleanup);
+    }
+
+    const notificationsBeforeCleanup=getData(STORAGE.notifications,[]);
+    const notificationsAfterCleanup=notificationsBeforeCleanup.filter(n=>{
+        const text=JSON.stringify(n||{}).toLowerCase();
+        return !text.includes("cliente demo") &&
+               !text.includes("motoboy demo") &&
+               !text.includes("cli-001") &&
+               !text.includes("mot-001") &&
+               !text.includes("cliente@wayamy.com") &&
+               !text.includes("motoboy@wayamy.com");
+    });
+    if(notificationsAfterCleanup.length!==notificationsBeforeCleanup.length){
+        saveData(STORAGE.notifications,notificationsAfterCleanup);
+    }
+
+    // Se a sessão antiga pertencia a uma conta de demonstração, termina-a.
+    try{
+        const oldSession=JSON.parse(localStorage.getItem(STORAGE.session)||"null");
+        if(oldSession && (
+            demoUserIds.includes(oldSession.id) ||
+            demoUserNames.includes(oldSession.name) ||
+            demoUserEmails.includes(oldSession.email)
+        )){
+            localStorage.removeItem(STORAGE.session);
+        }
+    }catch{}
+
+    if(!localStorage.getItem(STORAGE.routes)){
+        // As rotas são criadas pelo Gestor. Não são inseridas rotas de exemplo.
+        saveData(STORAGE.routes,[]);
+    }
+
+    // Remover rotas de demonstração de versões anteriores.
+    const oldDemoRoutes=["ROT-001","ROT-002","ROT-003","ROT-004"];
+    const existingRoutes=getData(STORAGE.routes,[]);
+    const cleanedRoutes=existingRoutes.filter(r=>!oldDemoRoutes.includes(r.id));
+    if(cleanedRoutes.length!==existingRoutes.length){
+        saveData(STORAGE.routes,cleanedRoutes);
+    }
+
+    if(!localStorage.getItem(STORAGE.settings)){
+
+        saveData(STORAGE.settings,{
+            paymentMethod:"mcx",
+
+            iban:{
+                holder:"WAYAMY ENTREGAS",
+                bank:"",
+                iban:"",
+                account:"",
+                instructions:""
+            },
+
+            multicaixa:{
+                name:"WAYAMY ENTREGAS",
+                number:"",
+                instructions:""
+            },
+
+            proofWhatsapp:"923000000",
+            orderWhatsapp:"923000000",
+
+            driverPercent:75,
+            companyPercent:25,
+
+            theme:"light",
+
+        });
+
+    }
+
+    if(!localStorage.getItem(STORAGE.deliveries)){
+        saveData(STORAGE.deliveries,[]);
+    }
+
+    if(!localStorage.getItem(STORAGE.notifications)){
+        saveData(STORAGE.notifications,[]);
+    }
+
+    /* Compatibilidade com versões anteriores */
+    const currentSettings=getData(STORAGE.settings,{});
+    let settingsChanged=false;
+
+    if(!currentSettings.theme){
+        currentSettings.theme="light";
+        settingsChanged=true;
+    }
+
+    if(!currentSettings.proofWhatsapp){
+        currentSettings.proofWhatsapp="923000000";
+        settingsChanged=true;
+    }
+
+    if(!currentSettings.orderWhatsapp){
+        currentSettings.orderWhatsapp=currentSettings.proofWhatsapp||"923000000";
+        settingsChanged=true;
+    }
+
+    if(typeof currentSettings.driverPercent!=="number") {
+        currentSettings.driverPercent=75;
+        settingsChanged=true;
+    }
+    if(typeof currentSettings.companyPercent!=="number") {
+        currentSettings.companyPercent=100-currentSettings.driverPercent;
+        settingsChanged=true;
+    }
+
+    if(settingsChanged){
+        saveData(STORAGE.settings,currentSettings);
+    }
+
+}
+
+initializeData();
+
+
+/* =========================================================
+   TEMA
+========================================================= */
+
+function applyTheme(){
+    const settings=getData(STORAGE.settings,{theme:"light"});
+    const dark=settings.theme==="dark";
+
+    document.body.classList.toggle("dark-mode",dark);
+
+    const meta=document.querySelector('meta[name="theme-color"]');
+    if(meta){
+        meta.setAttribute("content",dark?"#07111F":"#061A2D");
+    }
+    const topBtn=document.getElementById("topThemeBtn");
+    const floatBtn=document.getElementById("themeFloatingBtn");
+    const title=dark?"Mudar para modo claro":"Mudar para modo escuro";
+    if(topBtn){
+        topBtn.textContent=dark?"☀️":"🌙";
+        topBtn.title=title;
+        topBtn.setAttribute("aria-label",title);
+    }
+    if(floatBtn){
+        floatBtn.textContent=dark?"☀️":"🌙";
+        floatBtn.title=title;
+        floatBtn.setAttribute("aria-label",title);
+    }
+}
+
+function toggleTheme(){
+    const settings=getData(STORAGE.settings,{});
+    settings.theme=settings.theme==="dark"?"light":"dark";
+    saveData(STORAGE.settings,settings);
+    applyTheme();
+
+    if(session){
+        renderPage(currentPage || currentRolePage(
+            session.role==="manager"?"dashboard":"home"
+        ));
+    }
+
+    toast(
+        settings.theme==="dark"
+        ?"Modo escuro ativado."
+        :"Modo claro ativado."
+    );
+}
+
+applyTheme();
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+let session = null;
+let selectedRole = "client";
+let currentPage = null;
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function toggleMenu(){
+
+    const menu = document.getElementById("sideMenu");
+
+    if(menu.classList.contains("open")){
+        closeMenu();
+    }else{
+        openMenu();
+    }
+}
+
+function openMenu(){
+
+    document.getElementById("sideMenu").classList.add("open");
+    document.getElementById("menuOverlay").classList.add("show");
+
+}
+
+function closeMenu(){
+
+    document.getElementById("sideMenu").classList.remove("open");
+    document.getElementById("menuOverlay").classList.remove("show");
+
+}
+
+document.getElementById("menuOverlay").addEventListener(
+    "click",
+    closeMenu
+);
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+        closeMenu();
+    }
+
+});
+
+
+/* =========================================================
+   NAVEGAÇÃO CENTRAL
+========================================================= */
+
+function navigate(page,fromHistory=false){
+    if(!page) return;
+    currentPage = page;
+    if(!fromHistory && session){
+        try{ history.pushState({wayamy:true,page:page,role:session.role},"","#"+page); }catch(e){}
+    }
+
+    // fecha sempre o menu
+    closeMenu();
+
+    renderPage(page);
+
+    // garante que a página começa no topo
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+window.addEventListener("popstate",function(e){
+    if(!session) return;
+    const modal=document.getElementById("modal");
+    if(modal && modal.classList.contains("show")){ closeModal(); history.pushState({wayamy:true,page:currentPage,role:session.role},"","#"+currentPage); return; }
+    const state=e.state;
+    if(state && state.wayamy && state.role===session.role && state.page){ renderPage(state.page); currentPage=state.page; window.scrollTo(0,0); }
+    else { history.pushState({wayamy:true,page:currentPage,role:session.role},"","#"+currentPage); }
+});
+
+/* =========================================================
+   PÁGINAS POR FUNÇÃO
+========================================================= */
+
+function currentRolePage(name){
+
+    return session?.role + "-" + name;
+
+}
+
+
+/* =========================================================
+   MENUS
+========================================================= */
+
+const managerMenu = [
+
+    ["dashboard","📊","Dashboard"],
+    ["deliveries","📦","Entregas"],
+    ["clients","👥","Clientes"],
+    ["drivers","🏍️","Motoboys"],
+    ["payments","💳","Pagamentos"],
+    ["routes","💰","Preços por Zona"],
+    ["notifications","🔔","Notificações"],
+    ["reports","📈","Relatórios"],
+    ["invoices","🧾","Faturas"],
+    ["history","🕘","Histórico"],
+    ["security","🔐","Segurança"],
+    ["settings","⚙️","Definições"]
+
+];
+
+const clientMenu = [
+
+    ["home","🏠","Início"],
+    ["new","➕","Nova Entrega"],
+    ["track","📍","Acompanhar"],
+    ["history","🕘","Histórico"],
+    ["notifications","🔔","Notificações"],
+    ["invoices","🧾","Faturas"],
+    ["profile","👤","Perfil"],
+    ["security","🔐","Segurança"],
+    ["settings","⚙️","Definições"]
+
+];
+
+const driverMenu = [
+
+    ["home","🏠","Início"],
+    ["availability","🟢","Disponibilidade"],
+    ["requests","📦","Pedidos"],
+    ["current","🏍️","Entrega Atual"],
+    ["history","🕘","Histórico"],
+    ["earnings","💰","Ganhos"],
+    ["notifications","🔔","Notificações"],
+    ["invoices","🧾","Faturas"],
+    ["security","🔐","Segurança"],
+    ["profile","👤","Perfil"],
+    ["settings","⚙️","Definições"]
+
+];
+
+
+function buildMenu(){
+
+    const nav = document.getElementById("sidebarMenu");
+
+    let menu = [];
+
+    if(session.role==="manager"){
+        menu=managerMenu;
+    }
+
+    if(session.role==="client"){
+        menu=clientMenu;
+    }
+
+    if(session.role==="driver"){
+        menu=driverMenu;
+    }
+
+    nav.innerHTML="";
+
+    menu.forEach(item=>{
+
+        const [id,icon,label]=item;
+
+        const button=document.createElement("button");
+
+        button.className="menu-item";
+
+        button.dataset.page=session.role+"-"+id;
+
+        button.innerHTML=`
+            <span class="menu-icon">${icon}</span>
+            <span>${label}</span>
+        `;
+
+        nav.appendChild(button);
+
+    });
+
+}
+
+
+/* =========================================================
+   CLIQUE NO MENU
+   UM ÚNICO CONTROLADOR
+========================================================= */
+
+document.getElementById("sidebarMenu").addEventListener(
+    "click",
+    function(e){
+
+        const button=e.target.closest(".menu-item");
+
+        if(!button) return;
+
+        const page=button.dataset.page;
+
+        // Abre a tela
+        navigate(page);
+
+        // Fecha o menu automaticamente
+        closeMenu();
+
+    }
+);
+
+
+/* =========================================================
+   TÍTULOS
+========================================================= */
+
+const titles={
+
+    dashboard:["Dashboard","Visão geral da operação"],
+
+    deliveries:["Entregas","Gestão das entregas"],
+
+    clients:["Clientes","Clientes registados"],
+
+    drivers:["Motoboys","Gestão dos motoboys"],
+
+    payments:["Pagamentos","Pagamentos e confirmações"],
+
+    routes:["Preços por Zona","Tabela de preços por rota"],
+
+    notifications:["Notificações","Avisos do sistema"],
+
+    reports:["Relatórios","Relatórios da operação"],
+
+    invoices:["Faturas","Faturas e documentos"],
+
+    history:["Histórico","Histórico das operações"],
+
+    security:["Segurança","Controlo de acesso"],
+
+    settings:["Definições","Configurações do sistema"],
+
+    home:["Início","WAYAMY ENTREGAS"],
+
+    new:["Nova Entrega","Solicitar uma entrega"],
+
+    track:["Acompanhar","Acompanhe a sua entrega"],
+
+    availability:["Disponibilidade","Estado do motoboy"],
+
+    requests:["Pedidos","Entregas disponíveis"],
+
+    current:["Entrega Atual","Entrega em andamento"],
+
+    earnings:["Ganhos","Resumo dos seus ganhos"],
+
+    profile:["Perfil","Dados da conta"],
+
+    invoices:["Faturas","Documentos das suas entregas"],
+
+    security:["Segurança","Dados de acesso da sua conta"]
+
+};
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderPage(page){
+
+    const parts=page.split("-");
+    const role=parts.shift();
+    const screen=parts.join("-");
+
+    let html="";
+
+    if(role==="manager"){
+        html=renderManager(screen);
+    }
+
+    if(role==="client"){
+        html=renderClient(screen);
+    }
+
+    if(role==="driver"){
+        html=renderDriver(screen);
+    }
+
+    document.getElementById("content").innerHTML=html;
+    document.querySelectorAll(".table-wrap table").forEach(table=>{
+        const headers=[...table.querySelectorAll("thead th")].map(th=>th.textContent.trim());
+        table.querySelectorAll("tbody tr").forEach(row=>{
+            [...row.children].forEach((cell,i)=>{ if(headers[i]) cell.setAttribute("data-label",headers[i]); });
+        });
+    });
+
+    document.getElementById("topTitle").textContent=
+        titles[screen]?.[0] || "WAYAMY ENTREGAS";
+
+    document.getElementById("topSubtitle").textContent=
+        titles[screen]?.[1] || "";
+
+    document.querySelectorAll(".menu-item").forEach(item=>{
+        item.classList.toggle(
+            "active",
+            item.dataset.page===page
+        );
+    });
+
+    updateNotificationCount();
+
+}
+
+
+/* =========================================================
+   MANAGER
+========================================================= */
+
+function renderManager(page){
+
+    switch(page){
+
+        case "dashboard":
+            return managerDashboard();
+
+        case "deliveries":
+            return managerDeliveries();
+
+        case "clients":
+            return managerClients();
+
+        case "drivers":
+            return managerDrivers();
+
+        case "payments":
+            return managerPayments();
+
+        case "routes":
+            return managerRoutes();
+
+        case "notifications":
+            return notificationsPage();
+
+        case "reports":
+            return managerReports();
+
+        case "invoices":
+            return managerInvoices();
+
+        case "history":
+            return managerHistory();
+
+        case "security":
+            return managerSecurity();
+
+        case "settings":
+            return managerSettings();
+
+        default:
+            return managerDashboard();
+    }
+
+}
+
+
+/* =========================================================
+   MANAGER DASHBOARD
+========================================================= */
+
+function managerDashboard(){
+    const deliveries=getData(STORAGE.deliveries);
+    const users=getData(STORAGE.users);
+    const clients=users.filter(u=>u.role==="client");
+    const drivers=users.filter(u=>u.role==="driver");
+    const activeDrivers=drivers.filter(u=>u.active!==false).length;
+    const onlineDrivers=drivers.filter(u=>u.online && u.active!==false).length;
+    const active=deliveries.filter(d=>!["completed","cancelled"].includes(d.status)).length;
+    const completed=deliveries.filter(d=>d.status==="completed").length;
+    const cancelled=deliveries.filter(d=>d.status==="cancelled").length;
+    const pending=deliveries.filter(d=>d.paymentStatus==="pending").length;
+    const confirmed=deliveries.filter(d=>d.paymentStatus==="confirmed");
+    const revenue=confirmed.reduce((s,d)=>s+Number(d.price||0),0);
+    const settings=getData(STORAGE.settings,{});
+    const driverPercent=Number(settings.driverPercent??75);
+    const companyPercent=100-driverPercent;
+    const driverCash=revenue*driverPercent/100;
+    const companyCash=revenue*companyPercent/100;
+
+    return `
+        <div class="dashboard-hero">
+            <h1>Visão geral da operação</h1>
+            <p>Acompanhe entregas, equipa e pagamentos num único lugar.</p>
+        </div>
+
+        <div class="cards">
+            <div class="stat-card"><div class="stat-icon">📦</div><strong>${deliveries.length}</strong><span>Total de entregas</span></div>
+            <div class="stat-card"><div class="stat-icon">🚚</div><strong>${active}</strong><span>Em operação</span></div>
+            <div class="stat-card"><div class="stat-icon">👥</div><strong>${clients.length}</strong><span>Clientes cadastrados</span></div>
+            <div class="stat-card"><div class="stat-icon">💰</div><strong>${money(revenue)}</strong><span>Pagamentos confirmados</span></div>
+        </div>
+
+        <div class="dashboard-section-title"><h3>Valores acumulados</h3></div>
+        <div class="cards">
+            <div class="stat-card"><div class="stat-icon">🏍️</div><strong>${money(driverCash)}</strong><span>Cash Motoboys (${driverPercent}%)</span></div>
+            <div class="stat-card"><div class="stat-icon">🏢</div><strong>${money(companyCash)}</strong><span>Cash Empresa (${companyPercent}%)</span></div>
+        </div>
+
+        <div class="dashboard-section-title"><h3>Estado da operação</h3></div>
+        <div class="dashboard-grid">
+            <div class="dashboard-op"><div class="dashboard-op-head"><strong>${onlineDrivers}</strong><span>🟢</span></div><small>Motoboys online</small><br><button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('manager-drivers')">Ver motoboys</button></div>
+            <div class="dashboard-op"><div class="dashboard-op-head"><strong>${pending}</strong><span>💳</span></div><small>Pagamentos pendentes</small><br><button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('manager-payments')">Ver pagamentos</button></div>
+            <div class="dashboard-op"><div class="dashboard-op-head"><strong>${completed}</strong><span>✅</span></div><small>Entregas concluídas</small><br><button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('manager-invoices')">Ver faturas</button></div>
+            <div class="dashboard-op"><div class="dashboard-op-head"><strong>${cancelled}</strong><span>✕</span></div><small>Entregas canceladas</small><br><button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('manager-deliveries')">Ver entregas</button></div>
+            <div class="dashboard-op"><div class="dashboard-op-head"><strong>${activeDrivers}</strong><span>🏍️</span></div><small>Contas de motoboy ativas</small><br><button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('manager-drivers')">Gerir contas</button></div>
+            <div class="dashboard-op"><div class="dashboard-op-head"><strong>${getData(STORAGE.routes).length}</strong><span>💰</span></div><small>Rotas com preços cadastrados</small><br><button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('manager-routes')">Ver preços</button></div>
+        </div>
+
+        <div class="dashboard-section-title"><h3>Entregas recentes</h3><button class="btn btn-secondary" onclick="navigate('manager-deliveries')">Ver todas</button></div>
+        ${recentDeliveries()}
+    `;
+}
+
+
+/* =========================================================
+   ENTREGAS GESTOR
+========================================================= */
+
+function managerDeliveries(){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    if(!deliveries.length){
+
+        return emptyPage(
+            "📦",
+            "Nenhuma entrega registada",
+            "As novas solicitações dos clientes aparecerão aqui."
+        );
+
+    }
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Entregas</h1>
+                <p>Controle completo das solicitações.</p>
+            </div>
+
+            <div class="actions">
+
+                <button class="btn btn-secondary"
+                    onclick="filterDeliveries('all')">
+                    Todas
+                </button>
+
+                <button class="btn btn-secondary"
+                    onclick="filterDeliveries('pending')">
+                    Pendentes
+                </button>
+
+                <button class="btn btn-secondary"
+                    onclick="filterDeliveries('completed')">
+                    Concluídas
+                </button>
+
+                <button class="btn btn-secondary"
+                    onclick="filterDeliveries('cancelled')">
+                    Canceladas
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="managerDeliveryList">
+            ${deliveries.map(deliveryCardManager).join("")}
+        </div>
+
+    `;
+
+}
+
+
+function deliveryCardManager(d){
+
+    return `
+
+        <div class="delivery-card">
+
+            <div class="delivery-head">
+
+                <div>
+                    <div class="delivery-id">${d.id}</div>
+                    <strong>${esc(d.clientName)}</strong>
+                </div>
+
+                ${statusBadge(d.status)}
+
+            </div>
+
+            <div class="delivery-sections">
+
+                <div class="info-box">
+
+                    <h4>📦 RECOLHA</h4>
+
+                    <div class="info-line">
+                        <strong>Zona:</strong>
+                        ${esc(d.pickup.zone)}
+                    </div>
+
+                    <div class="info-line">
+                        <strong>Responsável:</strong>
+                        ${esc(d.pickup.name)}
+                    </div>
+
+                    <div class="info-line">
+                        <strong>Telefone:</strong>
+                        ${esc(d.pickup.phone)}
+                    </div>
+
+                    <div class="info-line">
+                        <strong>Referência:</strong>
+                        ${esc(d.pickup.reference)}
+                    </div>
+
+                    <a class="call-btn"
+                        href="tel:${escAttr(d.pickup.phone)}">
+                        📞 Ligar
+                    </a>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <h4>🏁 ENTREGA</h4>
+
+                    <div class="info-line">
+                        <strong>Zona:</strong>
+                        ${esc(d.destination.zone)}
+                    </div>
+
+                    <div class="info-line">
+                        <strong>Destinatário:</strong>
+                        ${esc(d.destination.name)}
+                    </div>
+
+                    <div class="info-line">
+                        <strong>Telefone:</strong>
+                        ${esc(d.destination.phone)}
+                    </div>
+
+                    <div class="info-line">
+                        <strong>Referência:</strong>
+                        ${esc(d.destination.reference)}
+                    </div>
+
+                    <a class="call-btn"
+                        href="tel:${escAttr(d.destination.phone)}">
+                        📞 Ligar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="actions">
+
+                <button class="btn btn-primary"
+                    onclick="viewDelivery('${d.id}')">
+                    Ver detalhes
+                </button>
+
+                <button class="btn btn-secondary"
+                    onclick="assignDriver('${d.id}')">
+                    Atribuir Motoboy
+                </button>
+
+                ${!["completed","cancelled"].includes(d.status)
+                ?`
+                    <button class="btn btn-danger"
+                        onclick="cancelDelivery('${d.id}')">
+                        Cancelar
+                    </button>
+                `
+                :""}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CLIENTES
+========================================================= */
+
+function managerClients(){
+
+    const users=getData(STORAGE.users)
+        .filter(u=>u.role==="client");
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Clientes</h1>
+                <p>Clientes registados na plataforma.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Estado</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        ${users.length ? users.map(u=>`
+
+                            <tr>
+
+                                <td>${esc(u.name)}</td>
+                                <td>${esc(u.phone)}</td>
+                                <td>${esc(u.email)}</td>
+
+                                <td>
+                                    ${u.active
+                                    ?'<span class="badge badge-green">ATIVO</span>'
+                                    :'<span class="badge badge-red">INATIVO</span>'}
+                                </td>
+
+                                <td>
+                                    <div class="invoice-actions" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                                        <button class="btn btn-secondary"
+                                            onclick="toggleUser('${u.id}')">
+                                            ${u.active?"Desativar":"Ativar"}
+                                        </button>
+                                        <button class="btn btn-danger"
+                                            onclick="removeClientAccount('${u.id}')">
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        `).join(""):`
+
+                            <tr>
+                                <td colspan="5" class="empty">
+                                    Nenhum cliente.
+                                </td>
+                            </tr>
+
+                        `}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   MOTOBOYS
+========================================================= */
+
+function removeClientAccount(id){
+    const users=getData(STORAGE.users);
+    const user=users.find(u=>u.id===id && u.role==="client");
+    if(!user) return;
+    if(!confirm(`Eliminar definitivamente a conta de ${user.name||"este cliente"}? O histórico das entregas será preservado.`)) return;
+
+    const deliveries=getData(STORAGE.deliveries);
+    deliveries.forEach(d=>{
+        if(d.clientId===id){
+            d.clientName=d.clientName||user.name||"Cliente removido";
+            d.clientPhone=d.clientPhone||user.phone||"";
+            d.clientId=null;
+        }
+    });
+    saveData(STORAGE.deliveries,deliveries);
+    saveData(STORAGE.users,users.filter(u=>u.id!==id));
+
+    if(session && session.id===id){
+        session=null;
+        localStorage.removeItem(STORAGE.session);
+    }
+    navigate("manager-clients");
+    toast("Conta do cliente eliminada.");
+}
+
+
+/* =========================================================
+   MOTOBOYS
+========================================================= */
+
+function managerDrivers(){
+    const users=getData(STORAGE.users).filter(u=>u.role==="driver");
+    return `
+        <div class="page-header"><div><h1>Motoboys</h1><p>Contas, disponibilidade e acesso dos motoboys.</p></div><span class="badge badge-blue">${users.length} conta(s)</span></div>
+        <div class="panel"><div class="panel-header"><h3>Gestão de contas</h3><span class="badge badge-blue">Ações da conta</span></div><div class="panel-body"><div class="table-wrap"><table><thead><tr><th>Motoboy</th><th>Telefone</th><th>Disponibilidade</th><th>Conta</th><th>Ações</th></tr></thead><tbody>
+        ${users.length?users.map(u=>`<tr>
+            <td><strong>${esc(u.name||"—")}</strong><br><small>${esc(u.email||"Sem email")}</small></td>
+            <td>${esc(u.phone||"—")}</td>
+            <td>${u.online?'<span class="badge badge-green">ONLINE</span>':'<span class="badge badge-orange">OFFLINE</span>'}</td>
+            <td>${u.active!==false?'<span class="badge badge-green">ATIVA</span>':'<span class="badge badge-red">DESATIVADA</span>'}</td>
+            <td><div class="invoice-actions"><button class="btn btn-secondary" onclick="toggleUser('${u.id}')">${u.active!==false?'Desativar':'Ativar'}</button><button class="btn btn-danger" onclick="removeDriverAccount('${u.id}')">Remover conta</button></div></td>
+        </tr>`).join(""):`<tr><td colspan="5" class="empty">Nenhum motoboy cadastrado.</td></tr>`}
+        </tbody></table></div></div></div>
+    `;
+}
+
+function removeDriverAccount(id){
+    const users=getData(STORAGE.users);
+    const user=users.find(u=>u.id===id && u.role==="driver");
+    if(!user) return;
+    if(!confirm(`Remover definitivamente a conta de ${user.name||"este motoboy"}? O histórico das entregas será preservado.`)) return;
+    const deliveries=getData(STORAGE.deliveries);
+    deliveries.forEach(d=>{ if(d.driverId===id){ d.driverName=d.driverName||user.name; d.driverId=null; } });
+    saveData(STORAGE.deliveries,deliveries);
+    saveData(STORAGE.users,users.filter(u=>u.id!==id));
+    navigate("manager-drivers");
+    toast("Conta do motoboy removida.");
+}
+
+
+/* =========================================================
+   PAGAMENTOS
+========================================================= */
+
+function managerPayments(){
+
+    const deliveries=getData(STORAGE.deliveries);
+    const settings=getData(STORAGE.settings);
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Pagamentos</h1>
+                <p>Controle e confirmação dos pagamentos.</p>
+            </div>
+
+            <span class="badge badge-blue">
+                ${settings.paymentMethod==="iban"
+                    ?"IBAN"
+                    :"MULTICAIXA Express"}
+            </span>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>Forma de pagamento ativa</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <strong>
+                    ${settings.paymentMethod==="iban"
+                    ?"IBAN"
+                    :"MULTICAIXA Express"}
+                </strong>
+
+                <br><br>
+
+                <button class="btn btn-secondary"
+                    onclick="navigate('manager-settings')">
+                    Alterar pagamento
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>Pagamentos das entregas</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Entrega</th>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Método</th>
+                                <th>Estado</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        ${deliveries.length ? deliveries.map(d=>`
+
+                            <tr>
+
+                                <td>${d.id}</td>
+                                <td>${esc(d.clientName)}</td>
+                                <td>${money(d.price)}</td>
+
+                                <td>
+                                    ${d.paymentMethod==="iban"
+                                    ?"IBAN"
+                                    :"MULTICAIXA Express"}
+                                </td>
+
+                                <td>
+                                    ${paymentBadge(d.paymentStatus)}
+                                </td>
+
+                                <td>
+
+                                    ${d.paymentStatus==="pending"
+                                    ?`
+                                        <button class="btn btn-success"
+                                            onclick="confirmPayment('${d.id}')">
+                                            Confirmar
+                                        </button>
+                                    `
+                                    :`
+                                        <span class="badge badge-green">
+                                            Confirmado
+                                        </span>
+                                    `}
+
+                                </td>
+
+                            </tr>
+
+                        `).join(""):`
+
+                            <tr>
+                                <td colspan="6" class="empty">
+                                    Nenhum pagamento registado.
+                                </td>
+                            </tr>
+
+                        `}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PREÇOS POR ZONA
+========================================================= */
+
+function managerRoutes(){
+
+    const routes=getData(STORAGE.routes);
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Preços por Zona</h1>
+                <p>Defina o preço de cada rota.</p>
+            </div>
+
+            <button class="btn btn-primary"
+                onclick="openRouteModal()">
+                + Nova Rota
+            </button>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Origem</th>
+                                <th>Destino</th>
+                                <th>Preço</th>
+                                <th>Estado</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        ${routes.length ? routes.map(r=>`
+
+                            <tr>
+
+                                <td>${esc(r.origin)}</td>
+
+                                <td>${esc(r.destination)}</td>
+
+                                <td>
+                                    <strong>${money(r.price)}</strong>
+                                </td>
+
+                                <td>
+                                    ${r.active
+                                    ?'<span class="badge badge-green">ATIVA</span>'
+                                    :'<span class="badge badge-red">INATIVA</span>'}
+                                </td>
+
+                                <td>
+
+                                    <button class="btn btn-secondary"
+                                        onclick="editRoute('${r.id}')">
+                                        Editar
+                                    </button>
+
+                                    <button class="btn btn-danger"
+                                        onclick="deleteRoute('${r.id}')">
+                                        Eliminar
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        `).join(""):`
+
+                            <tr>
+                                <td colspan="5" class="empty">
+                                    Nenhuma rota cadastrada.
+                                </td>
+                            </tr>
+
+                        `}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   NOTIFICAÇÕES
+========================================================= */
+
+function notificationsPage(){
+
+    const list=getData(STORAGE.notifications)
+        .filter(n=>n.role===session.role || n.role==="all");
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Notificações</h1>
+                <p>Avisos e atualizações.</p>
+            </div>
+
+            <button class="btn btn-secondary"
+                onclick="markAllRead()">
+                Marcar todas como lidas
+            </button>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                ${list.length ? list.map(n=>`
+
+                    <div class="delivery-card">
+
+                        <div class="delivery-head">
+
+                            <div>
+                                <strong>${esc(n.title)}</strong>
+                                <div style="font-size:11px;color:#718">
+                                    ${formatDate(n.createdAt)}
+                                </div>
+                            </div>
+
+                            ${n.read
+                                ?'<span class="badge badge-blue">LIDA</span>'
+                                :'<span class="badge badge-orange">NOVA</span>'}
+
+                        </div>
+
+                        <p>${esc(n.message)}</p>
+
+                        <br>
+
+                        <button class="btn btn-danger"
+                            onclick="deleteNotification('${n.id}')">
+                            Eliminar
+                        </button>
+
+                    </div>
+
+                `).join(""):`
+
+                    <div class="empty">
+                        🔔<br><br>
+                        Não existem notificações.
+                    </div>
+
+                `}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RELATÓRIOS
+========================================================= */
+
+function managerReports(){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const completed=deliveries.filter(
+        d=>d.status==="completed"
+    );
+
+    const cancelled=deliveries.filter(
+        d=>d.status==="cancelled"
+    );
+
+    const confirmed=deliveries.filter(
+        d=>d.paymentStatus==="confirmed"
+    );
+
+    const revenue=confirmed.reduce(
+        (s,d)=>s+Number(d.price||0),0
+    );
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Relatórios</h1>
+                <p>Resumo da operação da WAYAMY ENTREGAS.</p>
+            </div>
+
+            <button class="btn btn-primary"
+                onclick="window.print()">
+                🖨️ Imprimir
+            </button>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="stat-card">
+                <strong>${deliveries.length}</strong>
+                <span>Total de entregas</span>
+            </div>
+
+            <div class="stat-card">
+                <strong>${completed.length}</strong>
+                <span>Entregas concluídas</span>
+            </div>
+
+            <div class="stat-card">
+                <strong>${cancelled.length}</strong>
+                <span>Canceladas</span>
+            </div>
+
+            <div class="stat-card">
+                <strong>${money(revenue)}</strong>
+                <span>Pagamentos confirmados</span>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>Relatório de entregas</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Entrega</th>
+                                <th>Cliente</th>
+                                <th>Origem</th>
+                                <th>Destino</th>
+                                <th>Valor</th>
+                                <th>Estado</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                        ${deliveries.length ? deliveries.map(d=>`
+
+                            <tr>
+
+                                <td>${d.id}</td>
+                                <td>${esc(d.clientName)}</td>
+                                <td>${esc(d.pickup.zone)}</td>
+                                <td>${esc(d.destination.zone)}</td>
+                                <td>${money(d.price)}</td>
+                                <td>${statusBadge(d.status)}</td>
+                                <td>${formatDate(d.createdAt)}</td>
+
+                            </tr>
+
+                        `).join(""):`
+
+                            <tr>
+                                <td colspan="7" class="empty">
+                                    Sem dados.
+                                </td>
+                            </tr>
+
+                        `}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FATURAS
+========================================================= */
+
+function getDeletedInvoices(){
+    const settings=getData(STORAGE.settings,{});
+    return Array.isArray(settings.deletedInvoices)?settings.deletedInvoices:[];
+}
+
+function managerInvoices(){
+    const deleted=getDeletedInvoices();
+    const deliveries=getData(STORAGE.deliveries).filter(d=>d.status==="completed" && !deleted.includes(d.id));
+    const total=deliveries.reduce((s,d)=>s+Number(d.price||0),0);
+
+    return `
+        <div class="page-header">
+            <div><h1>Faturas</h1><p>Documentos completos das entregas concluídas.</p></div>
+            <div class="actions"><span class="badge badge-blue">${deliveries.length} fatura(s)</span><span class="badge badge-green">${money(total)}</span></div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><h3>Registo de faturas</h3><span class="badge badge-blue">Entrega concluída</span></div>
+            <div class="panel-body">
+                <div class="table-wrap"><table><thead><tr><th>Fatura</th><th>Cliente</th><th>Origem → Destino</th><th>Pagamento</th><th>Valor</th><th>Data</th><th>Ações</th></tr></thead><tbody>
+                ${deliveries.length?deliveries.map(d=>`<tr>
+                    <td><strong>FAT-${d.id.replace("ENT-","")}</strong><br><small>${d.id}</small></td>
+                    <td><strong>${esc(d.clientName||"—")}</strong><br><small>${esc(d.clientPhone||"Sem telefone")}</small></td>
+                    <td>${esc(d.pickup?.zone||"—")} → ${esc(d.destination?.zone||"—")}</td>
+                    <td>${d.paymentStatus==="confirmed"?'<span class="badge badge-green">Confirmado</span>':'<span class="badge badge-orange">Pendente</span>'}</td>
+                    <td><strong>${money(d.price)}</strong></td>
+                    <td>${formatDate(d.updatedAt||d.createdAt)}</td>
+                    <td><div class="invoice-actions"><button class="btn btn-secondary" onclick="viewInvoice('${d.id}')">Abrir</button><button class="btn btn-danger" onclick="deleteInvoice('${d.id}')">Eliminar</button></div></td>
+                </tr>`).join(""):`<tr><td colspan="7" class="empty">Nenhuma fatura disponível.</td></tr>`}
+                </tbody></table></div>
+            </div>
+        </div>
+    `;
+}
+
+function deleteInvoice(id){
+    const d=getData(STORAGE.deliveries).find(x=>x.id===id);
+    if(!d) return;
+    if(!confirm(`Eliminar a fatura FAT-${id.replace("ENT-","")}? A entrega continuará no histórico.`)) return;
+    const settings=getData(STORAGE.settings,{});
+    if(!Array.isArray(settings.deletedInvoices)) settings.deletedInvoices=[];
+    if(!settings.deletedInvoices.includes(id)) settings.deletedInvoices.push(id);
+    saveData(STORAGE.settings,settings);
+    navigate("manager-invoices");
+    toast("Fatura eliminada da lista.");
+}
+
+
+/* =========================================================
+   HISTÓRICO GESTOR
+========================================================= */
+
+function managerHistory(){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Histórico</h1>
+                <p>Registo das entregas e operações.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                ${deliveries.length
+                ?deliveries.map(d=>`
+
+                    <div class="delivery-card">
+
+                        <strong>${d.id}</strong>
+
+                        <p>
+                            ${esc(d.clientName)}
+                            —
+                            ${esc(d.pickup.zone)}
+                            → 
+                            ${esc(d.destination.zone)}
+                        </p>
+
+                        <small>
+                            ${formatDate(d.createdAt)}
+                        </small>
+
+                    </div>
+
+                `).join("")
+                :`
+                    <div class="empty">
+                        Histórico vazio.
+                    </div>
+                `}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SEGURANÇA
+========================================================= */
+
+function managerSecurity(){
+    return accountSecurity();
+}
+
+function accountSecurity(){
+    const users=getData(STORAGE.users,[]);
+    const settings=getData(STORAGE.settings,{});
+    const isManager=session?.role==="manager";
+    const user=isManager?null:users.find(u=>u.id===session.id);
+    const auth=isManager?(settings.managerAuth||{username:"WAYAMY",password:"123456",phone:""}):user;
+    const roleLabel=isManager?"Gestor":(session?.role==="driver"?"Motoboy":"Cliente");
+    return `
+      <div class="page-header"><div><h1>Segurança da conta</h1><p>Altere apenas os seus próprios dados de acesso.</p></div></div>
+      <div class="panel">
+        <div class="panel-header"><h3>🔐 Dados de acesso — ${roleLabel}</h3></div>
+        <div class="panel-body">
+          ${!isManager?`<div class="field"><label>Nome</label><input id="securityName" value="${escAttr(user?.name||"")}"></div>`:""}
+          <div class="form-grid">
+            <div class="field"><label>${isManager?"Utilizador de início de sessão":"Telefone de início de sessão"}</label><input id="securityLogin" value="${escAttr(isManager?(auth?.username||""):(user?.phone||""))}"></div>
+            ${!isManager?`<div class="field"><label>Email</label><input id="securityEmail" type="email" value="${escAttr(user?.email||"")}"></div>`:`<div class="field"><label>Telefone de segurança</label><input id="securityPhone" value="${escAttr(auth?.phone||"")}"></div>`}
+            <div class="field"><label>Nova palavra-passe</label><input id="securityPassword" type="password" autocomplete="new-password" placeholder="Deixe vazio para manter"></div>
+            <div class="field"><label>Confirmar palavra-passe</label><input id="securityPassword2" type="password" autocomplete="new-password" placeholder="Repita a nova palavra-passe"></div>
+          </div>
+          <p class="security-note">A palavra-passe atual nunca é mostrada. Só pode ser substituída pelo próprio utilizador.</p>
+          <button class="btn btn-primary" onclick="saveAccountSecurity()">💾 Guardar alterações</button>
+        </div>
+      </div>`;
+}
+
+function saveAccountSecurity(){
+    const users=getData(STORAGE.users,[]);
+    const settings=getData(STORAGE.settings,{});
+    const isManager=session?.role==="manager";
+    const login=(document.getElementById("securityLogin")?.value||"").trim();
+    const pass=document.getElementById("securityPassword")?.value||"";
+    const pass2=document.getElementById("securityPassword2")?.value||"";
+    if(!login){toast("Informe o dado de login.");return;}
+    if(pass && pass!==pass2){toast("As palavras-passe não coincidem.");return;}
+    if(pass && pass.length<6){toast("A palavra-passe deve ter pelo menos 6 caracteres.");return;}
+    if(isManager){
+        settings.managerAuth=settings.managerAuth||{username:"WAYAMY",password:"123456",phone:""};
+        settings.managerAuth.username=login;
+        settings.managerAuth.phone=(document.getElementById("securityPhone")?.value||"").trim();
+        if(pass) settings.managerAuth.password=pass;
+        saveData(STORAGE.settings,settings);
+        toast("Dados de segurança do Gestor atualizados.");
+    }else{
+        const u=users.find(x=>x.id===session.id);
+        if(!u){toast("Conta não encontrada.");return;}
+        u.name=(document.getElementById("securityName")?.value||u.name).trim();
+        u.phone=login;
+        u.email=(document.getElementById("securityEmail")?.value||"").trim();
+        if(pass) u.password=pass;
+        saveData(STORAGE.users,users);
+        session={...u};
+        localStorage.setItem(STORAGE.session,JSON.stringify(session));
+        document.getElementById("sidebarUserName").textContent=session.name;
+        document.getElementById("sidebarUserPhone").textContent=session.phone;
+        toast("Dados de segurança da conta atualizados.");
+    }
+    renderPage(session.role+"-security");
+}
+
+
+/* =========================================================
+   DEFINIÇÕES
+========================================================= */
+
+function managerSettings(){
+
+    const s=getData(STORAGE.settings);
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Definições</h1>
+                <p>Configurações da WAYAMY ENTREGAS.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>Pagamento</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label>Método de pagamento</label>
+
+                        <select id="paymentMethod">
+
+                            <option value="mcx"
+                                ${s.paymentMethod==="mcx"?"selected":""}>
+                                MULTICAIXA Express
+                            </option>
+
+                            <option value="iban"
+                                ${s.paymentMethod==="iban"?"selected":""}>
+                                IBAN
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>Dados do IBAN</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Titular</label>
+                        <input id="ibanHolder"
+                            value="${escAttr(s.iban.holder)}">
+                    </div>
+
+                    <div class="field">
+                        <label>Banco</label>
+                        <input id="ibanBank"
+                            value="${escAttr(s.iban.bank)}">
+                    </div>
+
+                    <div class="field full">
+                        <label>IBAN</label>
+                        <input id="ibanNumber"
+                            value="${escAttr(s.iban.iban)}">
+                    </div>
+
+                    <div class="field">
+                        <label>Número da conta</label>
+                        <input id="accountNumber"
+                            value="${escAttr(s.iban.account)}">
+                    </div>
+
+                    <div class="field">
+                        <label>Instruções</label>
+                        <input id="ibanInstructions"
+                            value="${escAttr(s.iban.instructions)}">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>MULTICAIXA Express</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Nome</label>
+                        <input id="mcxName"
+                            value="${escAttr(s.multicaixa.name)}">
+                    </div>
+
+                    <div class="field">
+                        <label>Número</label>
+                        <input id="mcxNumber"
+                            value="${escAttr(s.multicaixa.number)}">
+                    </div>
+
+                    <div class="field full">
+                        <label>Instruções</label>
+                        <input id="mcxInstructions"
+                            value="${escAttr(s.multicaixa.instructions)}">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>💰 Divisão dos valores</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Percentagem do Motoboy (%)</label>
+                        <input id="driverPercent" type="number" min="0" max="100" step="1" value="${Number(s.driverPercent??75)}">
+                    </div>
+                    <div class="field">
+                        <label>Percentagem da Empresa (%)</label>
+                        <input id="companyPercent" type="number" value="${100-Number(s.driverPercent??75)}" readonly>
+                    </div>
+                </div>
+                <p style="font-size:12px;color:#718">A soma deve ser 100%. Exemplo atual: 75% Motoboy + 25% Empresa.</p>
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>📦 WhatsApp para receber pedidos</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="field">
+                    <label>Número WhatsApp para pedidos</label>
+                    <input
+                        id="orderWhatsapp"
+                        type="tel"
+                        value="${escAttr(s.orderWhatsapp||"")}"
+                        placeholder="923000000">
+                </div>
+
+                <p style="font-size:12px;color:#718">
+                    Quando o Cliente solicitar uma entrega, o WhatsApp deste número será aberto com os dados do pedido já preenchidos.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>💳 WhatsApp para comprovativos de pagamento</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="field">
+                    <label>Número WhatsApp para comprovativos</label>
+                    <input
+                        id="proofWhatsapp"
+                        type="tel"
+                        value="${escAttr(s.proofWhatsapp||"")}"
+                        placeholder="923000000">
+                </div>
+
+                <p style="font-size:12px;color:#718">
+                    Este número é usado exclusivamente para os comprovativos de pagamento e pode ser alterado pelo Gestor a qualquer momento.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>🎨 Aparência</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <p style="margin-bottom:12px">
+                    Escolha o tema do site.
+                </p>
+
+                <button class="btn btn-secondary"
+                    onclick="toggleTheme()">
+                    ${s.theme==="dark"
+                        ?"☀️ Mudar para modo claro"
+                        :"🌙 Mudar para modo escuro"}
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button class="btn btn-primary"
+            onclick="saveSettings()">
+            💾 Guardar definições
+        </button>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CLIENTE
+========================================================= */
+
+function renderClient(page){
+
+    switch(page){
+
+        case "home":
+            return clientHome();
+
+        case "new":
+            return clientNew();
+
+        case "track":
+            return clientTrack();
+
+        case "history":
+            return clientHistory();
+
+        case "notifications":
+            return notificationsPage();
+
+        case "invoices":
+            return clientInvoices();
+
+        case "security":
+            return accountSecurity();
+
+        case "profile":
+            return clientProfile();
+
+        case "settings":
+            return clientSettings();
+
+        default:
+            return clientHome();
+
+    }
+
+}
+
+
+/* =========================================================
+   CLIENT HOME
+========================================================= */
+
+function clientHome(){
+
+    const deliveries=getData(STORAGE.deliveries)
+        .filter(d=>d.clientId===session.id);
+
+    const current=deliveries.find(
+        d=>!["completed","cancelled"].includes(d.status)
+    );
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Olá, ${esc(session.name)}</h1>
+                <p>Bem-vindo à WAYAMY ENTREGAS.</p>
+            </div>
+
+            <button class="btn btn-primary"
+                onclick="navigate('client-new')">
+                + Nova Entrega
+            </button>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <strong>${deliveries.length}</strong>
+                <span>Minhas entregas</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🚚</div>
+                <strong>${current?1:0}</strong>
+                <span>Em andamento</span>
+            </div>
+
+        </div>
+
+        ${current
+        ?`
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Entrega atual</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <strong>${current.id}</strong>
+
+                    <p>
+                        ${esc(current.pickup.zone)}
+                        →
+                        ${esc(current.destination.zone)}
+                    </p>
+
+                    <br>
+
+                    ${statusBadge(current.status)}
+
+                    <br><br>
+
+                    <button class="btn btn-primary"
+                        onclick="viewDelivery('${current.id}')">
+                        Acompanhar
+                    </button>
+
+                </div>
+
+            </div>
+        `
+        :`
+            <div class="panel">
+
+                <div class="panel-body empty">
+                    📦<br><br>
+                    Não tens nenhuma entrega em andamento.
+                </div>
+
+            </div>
+        `}
+
+        <div class="panel client-social-panel">
+            <div class="panel-header"><h3>🌐 Fale com a WAYAMY</h3></div>
+            <div class="panel-body">
+                <p><strong>Reclamações, serviços, novidades, sugestões e contacto.</strong></p>
+                <div class="social-links-final">
+                    <a class="btn btn-secondary" href="https://www.instagram.com/girokilamba_delivery?stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+                    <a class="btn btn-secondary" href="https://www.facebook.com/profile.php?id=100090366572953" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+                </div>
+            </div>
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   NOVA ENTREGA
+========================================================= */
+
+function clientNew(){
+
+    const routes=getData(STORAGE.routes)
+        .filter(r=>r.active);
+
+    const settings=getData(STORAGE.settings);
+
+    const zones=[
+        ...new Set(
+            routes.flatMap(r=>[r.origin,r.destination])
+        )
+    ];
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Nova Entrega</h1>
+                <p>Preencha os dados da recolha e da entrega.</p>
+            </div>
+
+        </div>
+
+        <form onsubmit="createDelivery(event)">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Dados do Cliente</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label>Nome</label>
+                            <input value="${escAttr(session.name)}"
+                                disabled>
+                        </div>
+
+                        <div class="field">
+                            <label>Telefone</label>
+                            <input value="${escAttr(session.phone)}"
+                                disabled>
+                        </div>
+
+                        <div class="field full">
+                            <label>Localidade</label>
+                            <input id="clientLocality"
+                                placeholder="Ex.: Cazenga"
+                                required>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>📦 Recolha</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label>Zona de recolha</label>
+
+                            <select id="pickupZone" required>
+
+                                <option value="">
+                                    Selecionar zona
+                                </option>
+
+                                ${zones.map(z=>`
+                                    <option value="${escAttr(z)}">
+                                        ${esc(z)}
+                                    </option>
+                                `).join("")}
+
+                            </select>
+
+                        </div>
+
+                        <div class="field">
+                            <label>Nome da pessoa da recolha</label>
+                            <input id="pickupName" required>
+                        </div>
+
+                        <div class="field">
+                            <label>Telefone da recolha</label>
+                            <input id="pickupPhone"
+                                type="tel"
+                                required>
+                        </div>
+
+                        <div class="field">
+                            <label>Endereço / Referência</label>
+                            <input id="pickupReference" required>
+                        </div>
+
+                        <div class="field full">
+                            <label>Observações da recolha</label>
+                            <textarea id="pickupNotes"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>🏁 Destino / Entrega</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label>Zona de destino</label>
+
+                            <select id="destinationZone" required>
+
+                                <option value="">
+                                    Selecionar zona
+                                </option>
+
+                                ${zones.map(z=>`
+                                    <option value="${escAttr(z)}">
+                                        ${esc(z)}
+                                    </option>
+                                `).join("")}
+
+                            </select>
+
+                        </div>
+
+                        <div class="field">
+                            <label>Nome do destinatário</label>
+                            <input id="destinationName" required>
+                        </div>
+
+                        <div class="field">
+                            <label>Telefone do destinatário</label>
+                            <input id="destinationPhone"
+                                type="tel"
+                                required>
+                        </div>
+
+                        <div class="field">
+                            <label>Endereço / Referência</label>
+                            <input id="destinationReference" required>
+                        </div>
+
+                        <div class="field full">
+                            <label>Observações da entrega</label>
+                            <textarea id="destinationNotes"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>📦 Pacote</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label>Tipo</label>
+                            <input id="packageType"
+                                placeholder="Ex.: Documento, roupa, alimento"
+                                required>
+                        </div>
+
+                        <div class="field">
+                            <label>Descrição</label>
+                            <input id="packageDescription"
+                                required>
+                        </div>
+
+                        <div class="field full">
+                            <label>Observações especiais</label>
+                            <textarea id="packageNotes"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>💳 Pagamento</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <div id="pricePreview"
+                        class="stat-card"
+                        style="margin-bottom:15px">
+                        <span>Preço da rota</span>
+                        <strong>Selecione origem e destino</strong>
+                    </div>
+
+                    <p style="font-size:12px;color:#718">
+                        Método configurado pelo Gestor:
+                        <strong>
+                            ${settings.paymentMethod==="iban"
+                            ?"IBAN"
+                            :"MULTICAIXA Express"}
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button class="btn btn-primary btn-full">
+                📦 SOLICITAR ENTREGA
+            </button>
+
+        </form>
+
+        <script>
+        setTimeout(initRoutePricePreview,50);
+        <\/script>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PREÇO DA ROTA
+========================================================= */
+
+function initRoutePricePreview(){
+
+    const origin=document.getElementById("pickupZone");
+    const destination=document.getElementById("destinationZone");
+
+    if(!origin || !destination) return;
+
+    function update(){
+
+        const routes=getData(STORAGE.routes);
+
+        const route=routes.find(r=>
+            r.active &&
+            r.origin===origin.value &&
+            r.destination===destination.value
+        );
+
+        const box=document.getElementById("pricePreview");
+
+        if(!origin.value || !destination.value){
+
+            box.innerHTML=`
+                <span>Preço da rota</span>
+                <strong>Selecione origem e destino</strong>
+            `;
+
+            return;
+        }
+
+        if(!route){
+
+            box.innerHTML=`
+                <span>Preço da rota</span>
+                <strong style="color:#D64545">
+                    Rota sem preço definido
+                </strong>
+                <small>
+                    Aguarde a confirmação do Gestor.
+                </small>
+            `;
+
+            return;
+        }
+
+        box.innerHTML=`
+            <span>Preço da rota</span>
+            <strong>${money(route.price)}</strong>
+        `;
+
+    }
+
+    origin.addEventListener("change",update);
+    destination.addEventListener("change",update);
+
+}
+
+
+/* =========================================================
+   CRIAR ENTREGA
+========================================================= */
+
+function createDelivery(event){
+
+    event.preventDefault();
+
+    const routes=getData(STORAGE.routes);
+
+    const origin=document.getElementById("pickupZone").value;
+    const destination=document.getElementById("destinationZone").value;
+
+    const route=routes.find(r=>
+        r.active &&
+        r.origin===origin &&
+        r.destination===destination
+    );
+
+    if(!route){
+
+        toast(
+            "Esta rota ainda não possui preço definido."
+        );
+
+        return;
+    }
+
+    const settings=getData(STORAGE.settings);
+
+    const delivery={
+
+        id:"ENT-"+Date.now(),
+
+        clientId:session.id,
+        clientName:session.name,
+        clientPhone:session.phone,
+
+        clientLocality:
+            document.getElementById("clientLocality").value,
+
+        pickup:{
+
+            zone:origin,
+
+            name:
+                document.getElementById("pickupName").value,
+
+            phone:
+                document.getElementById("pickupPhone").value,
+
+            reference:
+                document.getElementById("pickupReference").value,
+
+            address:
+                document.getElementById("pickupReference").value,
+
+            notes:
+                document.getElementById("pickupNotes").value
+
+        },
+
+        destination:{
+
+            zone:destination,
+
+            name:
+                document.getElementById("destinationName").value,
+
+            phone:
+                document.getElementById("destinationPhone").value,
+
+            reference:
+                document.getElementById("destinationReference").value,
+
+            address:
+                document.getElementById("destinationReference").value,
+
+            notes:
+                document.getElementById("destinationNotes").value
+
+        },
+
+        package:{
+
+            type:
+                document.getElementById("packageType").value,
+
+            description:
+                document.getElementById("packageDescription").value,
+
+            notes:
+                document.getElementById("packageNotes").value
+
+        },
+
+        price:route.price,
+
+        paymentMethod:settings.paymentMethod,
+
+        paymentStatus:"pending",
+
+        paymentProof:{
+            fileName:"",
+            fileType:"",
+            dataUrl:"",
+            uploadedAt:""
+        },
+
+        status:"pending",
+
+        driverId:null,
+        driverName:null,
+
+        contact:{
+
+            pickupCalled:false,
+            pickupConfirmed:false,
+            pickedUp:false,
+
+            recipientCalled:false,
+            recipientConfirmed:false,
+
+            delivered:false
+
+        },
+
+        createdAt:new Date().toISOString(),
+        updatedAt:new Date().toISOString(),
+
+        history:[
+            {
+                action:"Entrega criada",
+                date:new Date().toISOString()
+            }
+        ]
+
+    };
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    deliveries.unshift(delivery);
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "manager",
+        "Nova entrega",
+        `Nova entrega ${delivery.id} criada por ${session.name}.`
+    );
+
+    // Abrir o WhatsApp configurado pelo Gestor com o pedido já preenchido.
+    if(settings.orderWhatsapp){
+        const orderText = [
+            "WAYAMY ENTREGAS - NOVO PEDIDO",
+            "",
+            "Pedido: "+delivery.id,
+            "Cliente: "+delivery.clientName,
+            "Telefone: "+delivery.clientPhone,
+            "Localidade: "+delivery.clientLocality,
+            "",
+            "RECOLHA",
+            "Zona: "+delivery.pickup.zone,
+            "Nome: "+delivery.pickup.name,
+            "Telefone: "+delivery.pickup.phone,
+            "Endereço/Referência: "+delivery.pickup.reference,
+            "",
+            "DESTINO",
+            "Zona: "+delivery.destination.zone,
+            "Destinatário: "+delivery.destination.name,
+            "Telefone: "+delivery.destination.phone,
+            "Endereço/Referência: "+delivery.destination.reference,
+            "",
+            "PACOTE",
+            "Tipo: "+delivery.package.type,
+            "Descrição: "+delivery.package.description,
+            "",
+            "VALOR: "+money(delivery.price),
+            "Pagamento: "+(delivery.paymentMethod==="iban"?"IBAN":"MULTICAIXA Express")
+        ].join("\n");
+
+        const whatsappNumber=String(settings.orderWhatsapp).replace(/\D/g,"");
+        if(whatsappNumber){
+            window.open("https://wa.me/"+whatsappNumber+"?text="+encodeURIComponent(orderText),"_blank");
+        }
+    }
+
+    toast("Entrega solicitada com sucesso. O WhatsApp de pedidos foi aberto.");
+
+    navigate("client-track");
+
+}
+
+
+/* =========================================================
+   ACOMPANHAR
+========================================================= */
+
+function clientTrack(){
+
+    const deliveries=getData(STORAGE.deliveries)
+        .filter(d=>d.clientId===session.id);
+
+    const current=deliveries.find(
+        d=>!["completed","cancelled"].includes(d.status)
+    );
+
+    if(!current){
+
+        return emptyPage(
+            "📍",
+            "Nenhuma entrega em andamento",
+            "Quando fizer uma solicitação, poderá acompanhá-la aqui."
+        );
+
+    }
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>${current.id}</h1>
+                <p>Acompanhe o estado da entrega.</p>
+            </div>
+
+            ${statusBadge(current.status)}
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="steps">
+
+                    ${step("Solicitação",true)}
+                    ${step(
+                        "Motoboy atribuído",
+                        !!current.driverId
+                    )}
+                    ${step(
+                        "Recolha",
+                        !!current.contact.pickedUp
+                    )}
+                    ${step(
+                        "Entrega",
+                        !!current.contact.delivered
+                    )}
+
+                </div>
+
+                <div class="delivery-sections">
+
+                    <div class="info-box">
+
+                        <h4>📦 RECOLHA</h4>
+
+                        <div class="info-line">
+                            <strong>Zona:</strong>
+                            ${esc(current.pickup.zone)}
+                        </div>
+
+                        <div class="info-line">
+                            <strong>Responsável:</strong>
+                            ${esc(current.pickup.name)}
+                        </div>
+
+                        <div class="info-line">
+                            <strong>Telefone:</strong>
+                            ${esc(current.pickup.phone)}
+                        </div>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <h4>🏁 ENTREGA</h4>
+
+                        <div class="info-line">
+                            <strong>Zona:</strong>
+                            ${esc(current.destination.zone)}
+                        </div>
+
+                        <div class="info-line">
+                            <strong>Destinatário:</strong>
+                            ${esc(current.destination.name)}
+                        </div>
+
+                        <div class="info-line">
+                            <strong>Telefone:</strong>
+                            ${esc(current.destination.phone)}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <br>
+
+                <strong>Valor:</strong>
+                ${money(current.price)}
+
+                <br><br>
+
+                <strong>Pagamento:</strong>
+                ${paymentBadge(current.paymentStatus)}
+
+                <br><br>
+
+                ${current.paymentStatus==="pending"
+                ?`
+                    <button class="btn btn-primary"
+                        onclick="openPaymentProof('${current.id}')">
+                        💳 Confirmar pagamento
+                    </button>
+                `
+                :`
+                    <span class="badge badge-green">
+                        PAGAMENTO CONFIRMADO
+                    </span>
+                `}
+
+                <br><br>
+
+                ${!current.driverId && current.status==="pending"
+                ?`
+                    <button class="btn btn-danger"
+                        onclick="cancelClientDelivery('${current.id}')">
+                        Cancelar entrega
+                    </button>
+                `
+                :""}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   HISTÓRICO CLIENTE
+========================================================= */
+
+function clientHistory(){
+
+    const deliveries=getData(STORAGE.deliveries)
+        .filter(d=>d.clientId===session.id);
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Histórico</h1>
+                <p>As suas entregas.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                ${deliveries.length
+                ?deliveries.map(d=>`
+
+                    <div class="delivery-card">
+
+                        <div class="delivery-head">
+
+                            <div>
+                                <strong>${d.id}</strong>
+                                <p>
+                                    ${esc(d.pickup.zone)}
+                                    →
+                                    ${esc(d.destination.zone)}
+                                </p>
+                            </div>
+
+                            ${statusBadge(d.status)}
+
+                        </div>
+
+                        <strong>${money(d.price)}</strong>
+
+                    </div>
+
+                `).join("")
+                :`
+                    <div class="empty">
+                        Ainda não tens entregas.
+                    </div>
+                `}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PERFIL CLIENTE
+========================================================= */
+
+function clientProfile(){
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Meu Perfil</h1>
+                <p>Dados da sua conta.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="field">
+                    <label>Nome</label>
+                    <input id="profileName"
+                        value="${escAttr(session.name)}">
+                </div>
+
+                <div class="field">
+                    <label>Telefone</label>
+                    <input id="profilePhone"
+                        value="${escAttr(session.phone)}">
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input id="profileEmail"
+                        value="${escAttr(session.email)}">
+                </div>
+
+                <button class="btn btn-primary"
+                    onclick="saveProfile()">
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function clientSettings(){
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Definições</h1>
+                <p>Preferências da conta.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <p>
+                    🔔 As notificações estão ativadas.
+                </p>
+
+                <br>
+
+                <button class="btn btn-secondary"
+                    onclick="toast('Definições guardadas.')">
+                    Guardar preferências
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   MOTOBOY
+========================================================= */
+
+function renderDriver(page){
+
+    switch(page){
+
+        case "home":
+            return driverHome();
+
+        case "availability":
+            return driverAvailability();
+
+        case "requests":
+            return driverRequests();
+
+        case "current":
+            return driverCurrent();
+
+        case "history":
+            return driverHistory();
+
+        case "earnings":
+            return driverEarnings();
+
+        case "notifications":
+            return notificationsPage();
+
+        case "invoices":
+            return driverInvoices();
+
+        case "security":
+            return accountSecurity();
+
+        case "profile":
+            return driverProfile();
+
+        case "settings":
+            return driverSettings();
+
+        default:
+            return driverHome();
+
+    }
+
+}
+
+
+/* =========================================================
+   DRIVER HOME
+========================================================= */
+
+function driverHome(){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const current=deliveries.find(
+        d=>d.driverId===session.id &&
+        !["completed","cancelled"].includes(d.status)
+    );
+
+    const completed=deliveries.filter(
+        d=>d.driverId===session.id &&
+        d.status==="completed"
+    );
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Olá, ${esc(session.name)}</h1>
+                <p>Painel do Motoboy.</p>
+            </div>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="stat-card">
+                <div class="stat-icon">🏍️</div>
+                <strong>
+                    ${session.online?"ONLINE":"OFFLINE"}
+                </strong>
+                <span>Disponibilidade</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <strong>${completed.length}</strong>
+                <span>Entregas concluídas</span>
+            </div>
+
+        </div>
+
+        ${current
+        ?`
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Entrega atual</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    <strong>${current.id}</strong>
+
+                    <br><br>
+
+                    <button class="btn btn-primary"
+                        onclick="navigate('driver-current')">
+                        Abrir entrega
+                    </button>
+
+                </div>
+
+            </div>
+        `
+        :`
+            <div class="panel">
+
+                <div class="panel-body empty">
+                    🏍️<br><br>
+                    Não tens uma entrega atual.
+                </div>
+
+            </div>
+        `}
+
+    `;
+
+}
+
+
+/* =========================================================
+   DISPONIBILIDADE
+========================================================= */
+
+function driverAvailability(){
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Disponibilidade</h1>
+                <p>Escolha se está disponível para receber pedidos.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">🏍️</div>
+
+                    <strong>
+                        ${session.online?"ONLINE":"OFFLINE"}
+                    </strong>
+
+                    <span>
+                        ${session.online
+                        ?"Está disponível."
+                        :"Não está disponível."}
+                    </span>
+
+                    <br><br>
+
+                    <button
+                        class="btn ${
+                            session.online
+                            ?"btn-danger"
+                            :"btn-success"
+                        }"
+                        onclick="toggleDriverOnline()">
+
+                        ${
+                            session.online
+                            ?"Ficar OFFLINE"
+                            :"Ficar ONLINE"
+                        }
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PEDIDOS DRIVER
+========================================================= */
+
+function driverRequests(){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const requests=deliveries.filter(
+        d=>d.status==="pending" && !d.driverId
+    );
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Pedidos</h1>
+                <p>Entregas disponíveis.</p>
+            </div>
+
+        </div>
+
+        ${requests.length
+        ?requests.map(d=>`
+
+            <div class="delivery-card">
+
+                <div class="delivery-head">
+
+                    <div>
+                        <strong>${d.id}</strong>
+                        <p>${esc(d.clientName)}</p>
+                    </div>
+
+                    <strong>${money(d.price)}</strong>
+
+                </div>
+
+                <p>
+                    ${esc(d.pickup.zone)}
+                    →
+                    ${esc(d.destination.zone)}
+                </p>
+
+                <br>
+
+                <button class="btn btn-primary"
+                    onclick="acceptDelivery('${d.id}')">
+                    ACEITAR ENTREGA
+                </button>
+
+            </div>
+
+        `).join("")
+        :`
+            <div class="panel">
+
+                <div class="panel-body empty">
+                    📦<br><br>
+                    Não existem pedidos disponíveis.
+                </div>
+
+            </div>
+        `}
+
+    `;
+
+}
+
+
+/* =========================================================
+   ENTREGA ATUAL DRIVER
+========================================================= */
+
+function driverCurrent(){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const d=deliveries.find(
+        x=>x.driverId===session.id &&
+        !["completed","cancelled"].includes(x.status)
+    );
+
+    if(!d){
+
+        return emptyPage(
+            "🏍️",
+            "Nenhuma entrega atual",
+            "Aceite um pedido para começar."
+        );
+
+    }
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>${d.id}</h1>
+                <p>Entrega atual.</p>
+            </div>
+
+            ${statusBadge(d.status)}
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>📦 RECOLHA</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="info-line">
+                    <strong>Nome:</strong>
+                    ${esc(d.pickup.name)}
+                </div>
+
+                <div class="info-line">
+                    <strong>Telefone:</strong>
+                    ${esc(d.pickup.phone)}
+                </div>
+
+                <div class="info-line">
+                    <strong>Zona:</strong>
+                    ${esc(d.pickup.zone)}
+                </div>
+
+                <div class="info-line">
+                    <strong>Referência:</strong>
+                    ${esc(d.pickup.reference)}
+                </div>
+
+                <a class="call-btn"
+                    href="tel:${escAttr(d.pickup.phone)}">
+                    📞 LIGAR PARA RECOLHA
+                </a>
+
+                <br><br>
+
+                <button class="btn btn-secondary"
+                    onclick="updateContact('${d.id}','pickupCalled')">
+                    ${d.contact.pickupCalled
+                    ?"✓ Contacto realizado"
+                    :"Confirmar contacto"}
+                </button>
+
+                <button class="btn btn-primary"
+                    onclick="updateContact('${d.id}','pickedUp')">
+                    ${d.contact.pickedUp
+                    ?"✓ Recolha efetuada"
+                    :"Confirmar recolha"}
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>🏁 ENTREGA</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="info-line">
+                    <strong>Nome:</strong>
+                    ${esc(d.destination.name)}
+                </div>
+
+                <div class="info-line">
+                    <strong>Telefone:</strong>
+                    ${esc(d.destination.phone)}
+                </div>
+
+                <div class="info-line">
+                    <strong>Zona:</strong>
+                    ${esc(d.destination.zone)}
+                </div>
+
+                <div class="info-line">
+                    <strong>Referência:</strong>
+                    ${esc(d.destination.reference)}
+                </div>
+
+                <a class="call-btn"
+                    href="tel:${escAttr(d.destination.phone)}">
+                    📞 LIGAR PARA DESTINATÁRIO
+                </a>
+
+                <br><br>
+
+                <button class="btn btn-secondary"
+                    onclick="updateContact('${d.id}','recipientCalled')">
+                    ${d.contact.recipientCalled
+                    ?"✓ Contacto realizado"
+                    :"Confirmar contacto"}
+                </button>
+
+                <button class="btn btn-primary"
+                    onclick="updateContact('${d.id}','recipientConfirmed')">
+                    ${d.contact.recipientConfirmed
+                    ?"✓ Destinatário confirmado"
+                    :"Confirmar destinatário"}
+                </button>
+
+                <br><br>
+
+                <button class="btn btn-success"
+                    onclick="completeDelivery('${d.id}')">
+                    ✅ ENTREGA CONCLUÍDA
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+                <h3>📦 Pacote</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <p>
+                    <strong>Tipo:</strong>
+                    ${esc(d.package.type)}
+                </p>
+
+                <p>
+                    <strong>Descrição:</strong>
+                    ${esc(d.package.description)}
+                </p>
+
+                <p>
+                    <strong>Observações:</strong>
+                    ${esc(d.package.notes||"—")}
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FATURAS CLIENTE / MOTOBOY
+========================================================= */
+function clientInvoices(){
+    const deliveries=getData(STORAGE.deliveries).filter(d=>d.clientId===session.id && d.status==="completed");
+    return `<div class="page-header"><div><h1>Faturas</h1><p>Faturas das suas entregas concluídas.</p></div></div>
+      <div class="panel"><div class="panel-body"><div class="table-wrap"><table><thead><tr><th>Fatura</th><th>Rota</th><th>Pagamento</th><th>Valor</th><th>Data</th><th>Ações</th></tr></thead><tbody>
+      ${deliveries.length?deliveries.map(d=>`<tr><td><strong>FAT-${d.id.replace("ENT-","")}</strong></td><td>${esc(d.pickup?.zone||"—")} → ${esc(d.destination?.zone||"—")}</td><td>${d.paymentStatus==="confirmed"?"Confirmado":"Pendente"}</td><td><strong>${money(d.price)}</strong></td><td>${formatDate(d.updatedAt||d.createdAt)}</td><td><button class="btn btn-secondary" onclick="viewInvoice('${d.id}')">Abrir fatura</button><button class="btn btn-primary" onclick="downloadInvoice('${d.id}')">PDF</button></td></tr>`).join(""):`<tr><td colspan="6" class="empty">Nenhuma fatura disponível.</td></tr>`}
+      </tbody></table></div></div></div>`;
+}
+function driverInvoices(){
+    const deliveries=getData(STORAGE.deliveries).filter(d=>d.driverId===session.id && d.status==="completed");
+    return `<div class="page-header"><div><h1>Faturas</h1><p>Documentos das entregas concluídas.</p></div></div>
+      <div class="panel"><div class="panel-body"><div class="table-wrap"><table><thead><tr><th>Fatura</th><th>Cliente</th><th>Rota</th><th>Valor</th><th>Data</th><th>Ações</th></tr></thead><tbody>
+      ${deliveries.length?deliveries.map(d=>`<tr><td><strong>FAT-${d.id.replace("ENT-","")}</strong></td><td>${esc(d.clientName||"—")}</td><td>${esc(d.pickup?.zone||"—")} → ${esc(d.destination?.zone||"—")}</td><td><strong>${money(d.price)}</strong></td><td>${formatDate(d.updatedAt||d.createdAt)}</td><td><button class="btn btn-secondary" onclick="viewInvoice('${d.id}')">Abrir fatura</button><button class="btn btn-primary" onclick="downloadInvoice('${d.id}')">PDF</button></td></tr>`).join(""):`<tr><td colspan="6" class="empty">Nenhuma fatura disponível.</td></tr>`}
+      </tbody></table></div></div></div>`;
+}
+
+function downloadInvoice(id){
+    const d=getData(STORAGE.deliveries).find(x=>x.id===id);
+    if(!d){toast("Fatura não encontrada.");return;}
+    const lines=[
+      "WAYAMY ENTREGAS",
+      "FATURA FAT-"+id.replace("ENT-",""),
+      "Entrega: "+id,
+      "Cliente: "+(d.clientName||"—"),
+      "Telefone: "+(d.clientPhone||"—"),
+      "Origem: "+(d.pickup?.zone||"—"),
+      "Destino: "+(d.destination?.zone||"—"),
+      "Motoboy: "+(d.driverName||"—"),
+      "Pagamento: "+(d.paymentStatus==="confirmed"?"Confirmado":"Pendente"),
+      "Valor: "+money(d.price),
+      "Data: "+formatDate(d.updatedAt||d.createdAt)
+    ];
+    const escPdf=t=>String(t).replaceAll("\\","\\\\").replaceAll("(","\\(").replaceAll(")","\\)");
+    let stream="BT\n/F1 12 Tf\n50 800 Td\n";
+    lines.forEach((line,i)=>{ if(i) stream+="0 -22 Td\n"; stream+="("+escPdf(line)+") Tj\n"; });
+    stream+="ET";
+    const objects=["<< /Type /Catalog /Pages 2 0 R >>","<< /Type /Pages /Kids [3 0 R] /Count 1 >>","<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>","<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>","<< /Length "+stream.length+" >>\nstream\n"+stream+"\nendstream"];
+    let pdf="%PDF-1.4\n", offsets=[0];
+    objects.forEach((obj,i)=>{offsets[i+1]=pdf.length;pdf+=(i+1)+" 0 obj\n"+obj+"\nendobj\n";});
+    const xref=pdf.length;pdf+="xref\n0 "+(objects.length+1)+"\n0000000000 65535 f \n";for(let i=1;i<=objects.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";pdf+="trailer\n<< /Size "+(objects.length+1)+" /Root 1 0 R >>\nstartxref\n"+xref+"\n%%EOF";
+    const blob=new Blob([pdf],{type:"application/pdf"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="FAT-"+id.replace("ENT-","")+".pdf";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    toast("PDF da fatura gerado.");
+}
+
+/* =========================================================
+   DRIVER HISTORY
+========================================================= */
+
+function driverHistory(){
+
+    const deliveries=getData(STORAGE.deliveries)
+        .filter(d=>d.driverId===session.id);
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Histórico</h1>
+                <p>Entregas realizadas.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                ${deliveries.length
+                ?deliveries.map(d=>`
+
+                    <div class="delivery-card">
+
+                        <strong>${d.id}</strong>
+
+                        <p>
+                            ${esc(d.pickup.zone)}
+                            →
+                            ${esc(d.destination.zone)}
+                        </p>
+
+                        <br>
+
+                        ${statusBadge(d.status)}
+
+                    </div>
+
+                `).join("")
+                :`
+                    <div class="empty">
+                        Histórico vazio.
+                    </div>
+                `}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   GANHOS
+========================================================= */
+
+function driverEarnings(){
+
+    const deliveries=getData(STORAGE.deliveries)
+        .filter(d=>
+            d.driverId===session.id &&
+            d.status==="completed"
+        );
+
+    const total=deliveries.reduce(
+        (s,d)=>s+Number(d.price||0),
+        0
+    );
+
+    const settings=getData(STORAGE.settings,{});
+    const driverPercent=Number(settings.driverPercent??75);
+    const companyPercent=100-driverPercent;
+    const driverValue=total*driverPercent/100;
+    const companyValue=total*companyPercent/100;
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Ganhos</h1>
+                <p>Resumo das entregas concluídas.</p>
+            </div>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <strong>${deliveries.length}</strong>
+                <span>Entregas</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <strong>${money(driverValue)}</strong>
+                <span>Ganhos (${driverPercent}%)</span>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <p>
+                    A divisão atual é configurada pelo Gestor: <strong>${driverPercent}% para o Motoboy</strong> e <strong>${companyPercent}% para a empresa</strong>.
+                </p>
+
+                <br>
+
+                <p><strong>Cash acumulado do Motoboy:</strong> ${money(driverValue)}</p>
+                <p><strong>Parte da empresa:</strong> ${money(companyValue)}</p>
+
+                <br>
+
+                <p style="font-size:12px;color:#718">Os valores são calculados sobre entregas concluídas com pagamento confirmado.</p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function driverProfile(){
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Perfil</h1>
+                <p>Dados do Motoboy.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <div class="field">
+                    <label>Nome</label>
+                    <input id="profileName"
+                        value="${escAttr(session.name)}">
+                </div>
+
+                <div class="field">
+                    <label>Telefone</label>
+                    <input id="profilePhone"
+                        value="${escAttr(session.phone)}">
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input id="profileEmail"
+                        value="${escAttr(session.email)}">
+                </div>
+
+                <button class="btn btn-primary"
+                    onclick="saveProfile()">
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function driverSettings(){
+
+    return `
+
+        <div class="page-header">
+
+            <div>
+                <h1>Definições</h1>
+                <p>Preferências do Motoboy.</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <p>
+                    🔔 Notificações ativadas.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   REGISTO
+========================================================= */
+
+function openRegister(){
+
+    if(selectedRole==="manager"){
+        toast("O Gestor não pode criar conta.");
+        return;
+    }
+
+    const roleName=
+        selectedRole==="client"
+        ?"Cliente"
+        :"Motoboy";
+
+    openModal(
+        "Criar conta — "+roleName,
+        `
+
+            <form id="registerForm">
+
+                <div class="field">
+                    <label>Nome</label>
+                    <input id="regName" required>
+                </div>
+
+                <div class="field">
+                    <label>Telefone</label>
+                    <input id="regPhone"
+                        type="tel"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input id="regEmail"
+                        type="email"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label>Palavra-passe</label>
+                    <input id="regPassword"
+                        type="password"
+                        required>
+                </div>
+
+            </form>
+
+        `,
+        `
+
+            <button class="btn btn-secondary"
+                onclick="closeModal()">
+                Cancelar
+            </button>
+
+            <button class="btn btn-primary"
+                onclick="registerUser()">
+                Criar conta
+            </button>
+
+        `
+    );
+
+}
+
+
+function registerUser(){
+
+    const users=getData(STORAGE.users);
+
+    const email=document.getElementById("regEmail").value;
+    const phone=document.getElementById("regPhone").value;
+
+    if(users.some(u=>u.email===email || u.phone===phone)){
+
+        toast("Telefone ou email já utilizado.");
+        return;
+    }
+
+    const user={
+
+        id:
+            (selectedRole==="client"?"CLI-":"MOT-")
+            +Date.now(),
+
+        role:selectedRole,
+
+        name:document.getElementById("regName").value,
+
+        phone,
+
+        email,
+
+        password:
+            document.getElementById("regPassword").value,
+
+        active:true,
+
+        online:selectedRole==="driver"
+            ?false
+            :undefined,
+
+        createdAt:new Date().toISOString()
+
+    };
+
+    users.push(user);
+
+    saveData(STORAGE.users,users);
+
+    closeModal();
+
+    toast("Conta criada com sucesso.");
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+document.querySelectorAll(".role-tab").forEach(tab=>{
+
+    tab.addEventListener("click",function(){
+
+        document.querySelectorAll(".role-tab")
+            .forEach(x=>x.classList.remove("active"));
+
+        this.classList.add("active");
+
+        selectedRole=this.dataset.role;
+
+        const create=document.getElementById(
+            "createAccountArea"
+        );
+
+        const label=document.getElementById(
+            "loginIdentifierLabel"
+        );
+
+        if(selectedRole==="manager"){
+
+            create.style.display="none";
+            label.textContent="Utilizador";
+
+        }else{
+
+            create.style.display="block";
+            label.textContent="Telefone ou Email";
+
+        }
+
+    });
+
+});
+
+
+document.getElementById("loginForm").addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+        const identifier=
+            document.getElementById(
+                "loginIdentifier"
+            ).value.trim();
+
+        const password=
+            document.getElementById(
+                "loginPassword"
+            ).value;
+
+        let user=null;
+
+        if(selectedRole==="manager"){
+
+            const ms=getData(STORAGE.settings,{});
+            const ma=ms.managerAuth||{username:"WAYAMY",password:"123456",phone:""};
+            if(identifier===ma.username && password===ma.password){
+
+                user={
+                    id:"GESTOR-001",
+                    role:"manager",
+                    name:"Gestor WAYAMY",
+                    phone:"---",
+                    email:""
+                };
+
+            }
+
+        }else{
+
+            const users=getData(STORAGE.users);
+
+            user=users.find(u=>
+                u.role===selectedRole &&
+                (u.email===identifier ||
+                 u.phone===identifier) &&
+                u.password===password
+            );
+
+        }
+
+        if(!user){
+
+            toast("Dados de acesso incorretos.");
+            return;
+
+        }
+
+        if(user.active===false){
+
+            toast("Esta conta está inativa.");
+            return;
+
+        }
+
+        session=user;
+
+        localStorage.setItem(
+            STORAGE.session,
+            JSON.stringify(session)
+        );
+
+        enterApp();
+
+    }
+);
+
+
+/* =========================================================
+   ENTRAR NA APP
+========================================================= */
+
+function enterApp(){
+
+    document.getElementById("loginScreen")
+        .style.display="none";
+
+    document.getElementById("app")
+        .style.display="block";
+
+    buildMenu();
+
+    document.getElementById("sidebarRole")
+        .textContent=
+            session.role==="manager"
+            ?"Gestor"
+            :session.role==="driver"
+            ?"Motoboy"
+            :"Cliente";
+
+    document.getElementById("sidebarUserName")
+        .textContent=session.name;
+
+    document.getElementById("sidebarUserPhone")
+        .textContent=session.phone || "---";
+
+    try{ history.replaceState({wayamy:true,page:currentPage||"" ,role:session.role},"",location.pathname+location.search); }catch(e){}
+    if(session.role==="manager"){
+        navigate("manager-dashboard");
+    }else{
+        navigate(session.role==="client"?"client-home":"driver-home");
+    }
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+    closeMenu();
+
+    session=null;
+
+    localStorage.removeItem(STORAGE.session);
+
+    document.getElementById("app")
+        .style.display="none";
+
+    document.getElementById("loginScreen")
+        .style.display="flex";
+
+    document.getElementById("loginForm").reset();
+
+    selectedRole="client";
+
+    document.querySelectorAll(".role-tab")
+        .forEach(x=>x.classList.remove("active"));
+
+    document.querySelector(
+        '[data-role="client"]'
+    ).classList.add("active");
+
+}
+
+
+/* =========================================================
+   MANAGER STATUS
+========================================================= */
+
+
+
+/* =========================================================
+   ROUTES
+========================================================= */
+
+function openRouteModal(route=null){
+
+    openModal(
+
+        route
+        ?"Editar rota"
+        :"Nova rota",
+
+        `
+
+        <div class="field">
+            <label>Zona de origem</label>
+            <input id="routeOrigin"
+                value="${route?escAttr(route.origin):""}">
+        </div>
+
+        <div class="field">
+            <label>Zona de destino</label>
+            <input id="routeDestination"
+                value="${route?escAttr(route.destination):""}">
+        </div>
+
+        <div class="field">
+            <label>Preço (Kz)</label>
+            <input id="routePrice"
+                type="number"
+                min="0"
+                value="${route?route.price:""}">
+        </div>
+
+        `,
+
+        `
+
+        <button class="btn btn-secondary"
+            onclick="closeModal()">
+            Cancelar
+        </button>
+
+        <button class="btn btn-primary"
+            onclick="saveRoute('${route?route.id:""}')">
+            Guardar
+        </button>
+
+        `
+
+    );
+
+}
+
+
+function saveRoute(id){
+
+    const routes=getData(STORAGE.routes);
+
+    const data={
+
+        id:id || "ROT-"+Date.now(),
+
+        origin:
+            document.getElementById(
+                "routeOrigin"
+            ).value.trim(),
+
+        destination:
+            document.getElementById(
+                "routeDestination"
+            ).value.trim(),
+
+        price:Number(
+            document.getElementById(
+                "routePrice"
+            ).value
+        ),
+
+        active:id ? (routes.find(r=>r.id===id)?.active!==false) : true
+
+    };
+
+    if(!data.origin || !data.destination || data.price<=0){
+
+        toast("Preencha todos os dados.");
+        return;
+
+    }
+
+    if(id){
+
+        const index=routes.findIndex(r=>r.id===id);
+
+        if(index>=0){
+            routes[index]=data;
+        }
+
+    }else{
+
+        routes.push(data);
+
+    }
+
+    saveData(STORAGE.routes,routes);
+
+    closeModal();
+
+    navigate("manager-routes");
+
+    toast("Rota guardada.");
+
+}
+
+
+function editRoute(id){
+
+    const route=getData(STORAGE.routes)
+        .find(r=>r.id===id);
+
+    if(route){
+        openRouteModal(route);
+    }
+
+}
+
+
+function deleteRoute(id){
+
+    if(!confirm("Eliminar esta rota?")) return;
+
+    const routes=getData(STORAGE.routes)
+        .filter(r=>r.id!==id);
+
+    saveData(STORAGE.routes,routes);
+
+    navigate("manager-routes");
+
+    toast("Rota eliminada.");
+
+}
+
+
+/* =========================================================
+   ATRIBUIR MOTOBOY
+========================================================= */
+
+function assignDriver(deliveryId){
+
+    const drivers=getData(STORAGE.users)
+        .filter(u=>
+            u.role==="driver" &&
+            u.active!==false
+        );
+
+    if(!drivers.length){
+
+        toast("Não existem motoboys cadastrados.");
+        return;
+
+    }
+
+    openModal(
+
+        "Atribuir Motoboy",
+
+        `
+
+        <div class="field">
+
+            <label>Motoboy</label>
+
+            <select id="assignDriverSelect">
+
+                ${drivers.map(d=>`
+
+                    <option value="${d.id}">
+                        ${esc(d.name)}
+                        — ${esc(d.phone)}
+                    </option>
+
+                `).join("")}
+
+            </select>
+
+        </div>
+
+        `,
+
+        `
+
+        <button class="btn btn-secondary"
+            onclick="closeModal()">
+            Cancelar
+        </button>
+
+        <button class="btn btn-primary"
+            onclick="confirmAssignDriver('${deliveryId}')">
+            Atribuir
+        </button>
+
+        `
+
+    );
+
+}
+
+
+function confirmAssignDriver(deliveryId){
+
+    const driverId=
+        document.getElementById(
+            "assignDriverSelect"
+        ).value;
+
+    const users=getData(STORAGE.users);
+
+    const driver=users.find(
+        u=>u.id===driverId
+    );
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const d=deliveries.find(
+        x=>x.id===deliveryId
+    );
+
+    if(!d || !driver) return;
+
+    d.driverId=driver.id;
+    d.driverName=driver.name;
+    d.status="assigned";
+    d.updatedAt=new Date().toISOString();
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:`Motoboy atribuído: ${driver.name}`,
+        date:new Date().toISOString()
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "driver",
+        "Nova entrega atribuída",
+        `A entrega ${d.id} foi atribuída a si.`
+    );
+
+    closeModal();
+
+    navigate("manager-deliveries");
+
+    toast("Motoboy atribuído.");
+
+}
+
+
+/* =========================================================
+   ACCEPT DELIVERY
+========================================================= */
+
+function acceptDelivery(id){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d) return;
+
+    d.driverId=session.id;
+    d.driverName=session.name;
+    d.status="assigned";
+    d.updatedAt=new Date().toISOString();
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:`Entrega aceite por ${session.name}`,
+        date:new Date().toISOString()
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "manager",
+        "Entrega aceite",
+        `${session.name} aceitou a entrega ${d.id}.`
+    );
+
+    navigate("driver-current");
+
+    toast("Entrega aceite.");
+
+}
+
+
+/* =========================================================
+   CONTACTOS / ENTREGA
+========================================================= */
+
+function updateContact(id,field){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d) return;
+
+    d.contact[field]=true;
+
+    if(field==="pickupCalled"){
+        d.status="contacting_pickup";
+    }
+
+    if(field==="pickedUp"){
+        d.status="picked_up";
+    }
+
+    if(field==="recipientCalled"){
+        d.status="contacting_recipient";
+    }
+
+    if(field==="recipientConfirmed"){
+        d.status="ready_delivery";
+    }
+
+    d.updatedAt=new Date().toISOString();
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:field,
+        date:new Date().toISOString()
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    renderPage("driver-current");
+
+}
+
+
+function completeDelivery(id){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d) return;
+
+    d.contact.delivered=true;
+    d.status="completed";
+    d.updatedAt=new Date().toISOString();
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:"Entrega concluída",
+        date:new Date().toISOString()
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "manager",
+        "Entrega concluída",
+        `${d.id} foi concluída por ${session.name}.`
+    );
+
+    addNotification(
+        "client",
+        "Entrega concluída",
+        `A sua entrega ${d.id} foi concluída.`
+    );
+
+    navigate("driver-history");
+
+    toast("Entrega concluída.");
+
+}
+
+
+/* =========================================================
+   CANCELAR
+========================================================= */
+
+function cancelDelivery(id){
+
+    if(!confirm("Cancelar esta entrega?")) return;
+
+    const deliveries=getData(STORAGE.deliveries);
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d){
+        toast("Entrega não encontrada.");
+        return;
+    }
+
+    /* Não permitir alterar uma entrega já encerrada. */
+    if(["completed","cancelled"].includes(d.status)){
+        toast(
+            d.status==="cancelled"
+            ?"Esta entrega já está cancelada."
+            :"Uma entrega concluída não pode ser cancelada."
+        );
+        return;
+    }
+
+    const now=new Date().toISOString();
+
+    d.status="cancelled";
+    d.cancelledBy="manager";
+    d.cancelledAt=now;
+    d.updatedAt=now;
+
+    /* Compatibilidade com entregas antigas que não tinham histórico. */
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:"Entrega cancelada pelo Gestor",
+        date:now
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "client",
+        "Entrega cancelada",
+        `A entrega ${d.id} foi cancelada pelo Gestor.`
+    );
+
+    if(d.driverId){
+        addNotification(
+            "driver",
+            "Entrega cancelada",
+            `A entrega ${d.id} foi cancelada pelo Gestor.`
+        );
+    }
+
+    navigate("manager-deliveries");
+    toast("Entrega cancelada com sucesso.");
+
+}
+
+function cancelClientDelivery(id){
+
+    if(!confirm("Deseja cancelar esta entrega?")) return;
+
+    const deliveries=getData(STORAGE.deliveries);
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d){
+        toast("Entrega não encontrada.");
+        return;
+    }
+
+    if(["completed","cancelled"].includes(d.status)){
+        toast(
+            d.status==="cancelled"
+            ?"Esta entrega já está cancelada."
+            :"Esta entrega já foi concluída."
+        );
+        return;
+    }
+
+    if(d.driverId){
+        toast(
+            "Esta entrega já foi atribuída a um Motoboy."
+        );
+        return;
+    }
+
+    const now=new Date().toISOString();
+
+    d.status="cancelled";
+    d.cancelledBy="client";
+    d.cancelledAt=now;
+    d.updatedAt=now;
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:"Entrega cancelada pelo Cliente",
+        date:now
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "manager",
+        "Entrega cancelada",
+        `${d.id} foi cancelada pelo cliente.`
+    );
+
+    navigate("client-history");
+    toast("Entrega cancelada com sucesso.");
+
+}
+
+/* =========================================================
+   PAGAMENTO
+========================================================= */
+
+function openPaymentProof(id){
+
+    const settings=getData(STORAGE.settings);
+
+    const paymentInfo=
+        settings.paymentMethod==="iban"
+        ?`
+            <strong>IBAN</strong><br>
+            ${esc(settings.iban.bank)}<br>
+            ${esc(settings.iban.holder)}<br>
+            ${esc(settings.iban.iban)}
+        `
+        :`
+            <strong>MULTICAIXA Express</strong><br>
+            ${esc(settings.multicaixa.name)}<br>
+            ${esc(settings.multicaixa.number)}
+        `;
+
+    openModal(
+
+        "Confirmação de pagamento",
+
+        `
+
+        <p>
+            Efetue o pagamento utilizando os dados abaixo:
+        </p>
+
+        <br>
+
+        <div class="info-box">
+            ${paymentInfo}
+        </div>
+
+        <br>
+
+        <div class="field">
+
+            <label>Comprovativo (PDF ou imagem)</label>
+
+            <input
+                id="paymentFile"
+                type="file"
+                accept=".pdf,image/*">
+
+        </div>
+
+        <div class="field">
+
+            <label>Referência do pagamento</label>
+
+            <input
+                id="paymentReference"
+                placeholder="Opcional">
+
+        </div>
+
+        <p style="font-size:12px;color:#718">
+            No protótipo local, o comprovativo fica registado
+            no navegador. O envio automático do ficheiro para
+            WhatsApp será ligado posteriormente através de
+            backend/WhatsApp Business API.
+        </p>
+
+        `,
+
+        `
+
+        <button class="btn btn-secondary"
+            onclick="closeModal()">
+            Cancelar
+        </button>
+
+        <button class="btn btn-primary"
+            onclick="savePaymentProof('${id}')">
+            Enviar comprovativo
+        </button>
+
+        `
+
+    );
+
+}
+
+
+function savePaymentProof(id){
+
+    const fileInput=document.getElementById("paymentFile");
+    const reference=document.getElementById("paymentReference").value.trim();
+    const file=fileInput?.files?.[0];
+    const deliveries=getData(STORAGE.deliveries);
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d) return;
+
+    const finish=(dataUrl="")=>{
+        if(file){
+            d.paymentProof={
+                fileName:file.name,
+                fileType:file.type,
+                dataUrl,
+                uploadedAt:new Date().toISOString()
+            };
+        }
+
+        d.paymentReference=reference;
+        d.paymentStatus="pending";
+        d.updatedAt=new Date().toISOString();
+
+        if(!Array.isArray(d.history)) d.history=[];
+        d.history.push({action:"Comprovativo de pagamento enviado",date:d.updatedAt});
+
+        saveData(STORAGE.deliveries,deliveries);
+
+        addNotification("manager","Comprovativo recebido",`O cliente enviou comprovativo para ${d.id}.`);
+
+        const settings=getData(STORAGE.settings,{});
+        if(settings.proofWhatsapp){
+            const text=`WAYAMY ENTREGAS - Comprovativo\nEntrega: ${d.id}\nCliente: ${d.clientName}\nValor: ${money(d.price)}\nReferência: ${reference||"Não informada"}`;
+            window.open("https://wa.me/"+settings.proofWhatsapp.replace(/\D/g,"")+"?text="+encodeURIComponent(text),"_blank");
+        }
+
+        closeModal();
+        navigate("client-track");
+        toast("Comprovativo registado e enviado para análise.");
+    };
+
+    if(file){
+        const reader=new FileReader();
+        reader.onload=()=>finish(reader.result);
+        reader.readAsDataURL(file);
+    }else{
+        finish("");
+    }
+}
+
+function confirmPayment(id){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    const d=deliveries.find(x=>x.id===id);
+
+    if(!d) return;
+
+    if(d.paymentStatus==="confirmed") {
+        toast("Este pagamento já está confirmado.");
+        return;
+    }
+
+    d.paymentStatus="confirmed";
+
+    d.updatedAt=new Date().toISOString();
+
+    if(!Array.isArray(d.history)){
+        d.history=[];
+    }
+
+    d.history.push({
+        action:"Pagamento confirmado pelo Gestor",
+        date:new Date().toISOString()
+    });
+
+    saveData(STORAGE.deliveries,deliveries);
+
+    addNotification(
+        "client",
+        "Pagamento confirmado",
+        `O pagamento da entrega ${d.id} foi confirmado.`
+    );
+
+    navigate("manager-payments");
+
+    toast("Pagamento confirmado.");
+
+}
+
+
+/* =========================================================
+   DEFINIÇÕES
+========================================================= */
+
+function saveSettings(){
+
+    const s=getData(STORAGE.settings);
+
+    s.paymentMethod=
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+    s.iban={
+
+        holder:
+            document.getElementById(
+                "ibanHolder"
+            ).value,
+
+        bank:
+            document.getElementById(
+                "ibanBank"
+            ).value,
+
+        iban:
+            document.getElementById(
+                "ibanNumber"
+            ).value,
+
+        account:
+            document.getElementById(
+                "accountNumber"
+            ).value,
+
+        instructions:
+            document.getElementById(
+                "ibanInstructions"
+            ).value
+
+    };
+
+    s.multicaixa={
+
+        name:
+            document.getElementById(
+                "mcxName"
+            ).value,
+
+        number:
+            document.getElementById(
+                "mcxNumber"
+            ).value,
+
+        instructions:
+            document.getElementById(
+                "mcxInstructions"
+            ).value
+
+    };
+
+    s.orderWhatsapp=
+        document.getElementById(
+            "orderWhatsapp"
+        ).value.trim().replace(/\D/g,"");
+
+    s.proofWhatsapp=
+        document.getElementById(
+            "proofWhatsapp"
+        ).value.trim().replace(/\D/g,"");
+
+    const rawDriver=document.getElementById("driverPercent")?.value;
+    const driverPercent=Number(rawDriver);
+    if(!Number.isFinite(driverPercent) || driverPercent<0 || driverPercent>100){
+        toast("A percentagem do Motoboy deve estar entre 0% e 100%.");
+        return;
+    }
+    s.driverPercent=Math.round(driverPercent);
+    s.companyPercent=100-s.driverPercent;
+    const companyInput=document.getElementById("companyPercent");
+    if(companyInput) companyInput.value=s.companyPercent;
+
+    s.theme=s.theme==="dark"?"dark":"light";
+
+    saveData(STORAGE.settings,s);
+    applyTheme();
+
+    updateManagerStatusPill();
+
+    toast("Definições guardadas.");
+
+}
+
+
+/* =========================================================
+   UTILIZADORES
+========================================================= */
+
+function toggleUser(id){
+
+    const users=getData(STORAGE.users);
+
+    const user=users.find(
+        u=>u.id===id
+    );
+
+    if(!user) return;
+
+    user.active=!user.active;
+
+    saveData(STORAGE.users,users);
+
+    if(user.role==="client"){
+        navigate("manager-clients");
+    }else{
+        navigate("manager-drivers");
+    }
+
+    toast(
+        user.active
+        ?"Conta ativada."
+        :"Conta desativada."
+    );
+
+}
+
+
+function toggleDriverOnline(){
+
+    const users=getData(STORAGE.users);
+
+    const user=users.find(
+        u=>u.id===session.id
+    );
+
+    if(!user) return;
+
+    user.online=!user.online;
+
+    session.online=user.online;
+
+    saveData(STORAGE.users,users);
+
+    localStorage.setItem(
+        STORAGE.session,
+        JSON.stringify(session)
+    );
+
+    renderPage("driver-availability");
+
+    toast(
+        user.online
+        ?"Agora está ONLINE."
+        :"Agora está OFFLINE."
+    );
+
+}
+
+
+/* =========================================================
+   PERFIL
+========================================================= */
+
+function saveProfile(){
+
+    const users=getData(STORAGE.users);
+
+    const user=users.find(
+        u=>u.id===session.id
+    );
+
+    if(!user) return;
+
+    user.name=
+        document.getElementById(
+            "profileName"
+        ).value;
+
+    user.phone=
+        document.getElementById(
+            "profilePhone"
+        ).value;
+
+    user.email=
+        document.getElementById(
+            "profileEmail"
+        ).value;
+
+    session={...user};
+
+    saveData(STORAGE.users,users);
+
+    localStorage.setItem(
+        STORAGE.session,
+        JSON.stringify(session)
+    );
+
+    document.getElementById(
+        "sidebarUserName"
+    ).textContent=session.name;
+
+    document.getElementById(
+        "sidebarUserPhone"
+    ).textContent=session.phone;
+
+    toast("Perfil atualizado.");
+
+}
+
+
+/* =========================================================
+   NOTIFICAÇÕES
+========================================================= */
+
+function addNotification(role,title,message){
+
+    const list=getData(STORAGE.notifications);
+
+    list.unshift({
+
+        id:"NOT-"+Date.now()+"-"+Math.random(),
+
+        role,
+
+        title,
+
+        message,
+
+        read:false,
+
+        createdAt:new Date().toISOString()
+
+    });
+
+    saveData(STORAGE.notifications,list);
+
+}
+
+
+function updateNotificationCount(){
+
+    const list=getData(STORAGE.notifications);
+
+    const count=list.filter(n=>
+        !n.read &&
+        (n.role===session?.role || n.role==="all")
+    ).length;
+
+    const element=document.getElementById(
+        "notificationCount"
+    );
+
+    if(element){
+        element.textContent=count;
+        element.style.display=count?"flex":"none";
+    }
+
+}
+
+
+function markAllRead(){
+
+    const list=getData(STORAGE.notifications);
+
+    list.forEach(n=>{
+
+        if(
+            n.role===session.role ||
+            n.role==="all"
+        ){
+            n.read=true;
+        }
+
+    });
+
+    saveData(STORAGE.notifications,list);
+
+    navigate(
+        currentRolePage("notifications")
+    );
+
+}
+
+
+function deleteNotification(id){
+
+    const list=getData(STORAGE.notifications)
+        .filter(n=>n.id!==id);
+
+    saveData(STORAGE.notifications,list);
+
+    navigate(
+        currentRolePage("notifications")
+    );
+
+}
+
+
+/* =========================================================
+   DETALHES
+========================================================= */
+
+function viewDelivery(id){
+
+    const d=getData(STORAGE.deliveries)
+        .find(x=>x.id===id);
+
+    if(!d) return;
+
+    openModal(
+
+        "Detalhes — "+d.id,
+
+        `
+
+        <div class="info-box">
+
+            <h4>CLIENTE</h4>
+
+            <p>
+                <strong>${esc(d.clientName)}</strong>
+            </p>
+
+            <p>${esc(d.clientPhone)}</p>
+
+        </div>
+
+        <br>
+
+        <div class="info-box">
+
+            <h4>RECOLHA</h4>
+
+            <p>${esc(d.pickup.name)}</p>
+            <p>${esc(d.pickup.phone)}</p>
+            <p>${esc(d.pickup.zone)}</p>
+            <p>${esc(d.pickup.reference)}</p>
+
+        </div>
+
+        <br>
+
+        <div class="info-box">
+
+            <h4>ENTREGA</h4>
+
+            <p>${esc(d.destination.name)}</p>
+            <p>${esc(d.destination.phone)}</p>
+            <p>${esc(d.destination.zone)}</p>
+            <p>${esc(d.destination.reference)}</p>
+
+        </div>
+
+        <br>
+
+        <div class="info-box">
+
+            <h4>PACOTE</h4>
+
+            <p>${esc(d.package.type)}</p>
+            <p>${esc(d.package.description)}</p>
+
+        </div>
+
+        <br>
+
+        <p>
+            <strong>Preço:</strong>
+            ${money(d.price)}
+        </p>
+
+        <p>
+            <strong>Pagamento:</strong>
+            ${paymentBadge(d.paymentStatus)}
+        </p>
+
+        <p>
+            <strong>Motoboy:</strong>
+            ${esc(d.driverName||"Ainda não atribuído")}
+        </p>
+
+        `,
+
+        `
+
+        <button class="btn btn-secondary"
+            onclick="closeModal()">
+            Fechar
+        </button>
+
+        `
+
+    );
+
+}
+
+
+/* =========================================================
+   FATURA
+========================================================= */
+
+function viewInvoice(id){
+    const d=getData(STORAGE.deliveries).find(x=>x.id===id);
+    if(!d) return;
+    const history=Array.isArray(d.history)?d.history:[];
+    const client=getData(STORAGE.users).find(u=>u.id===d.clientId);
+    const clientName=d.clientName||client?.name||"—";
+    const clientPhone=d.clientPhone||client?.phone||"—";
+    const driverName=d.driverName||"Não atribuído";
+    openModal(`Fatura FAT-${id.replace("ENT-","")}`,`
+        <div class="invoice-summary">
+            <div class="invoice-mini"><span>Fatura</span><strong>FAT-${id.replace("ENT-","")}</strong></div>
+            <div class="invoice-mini"><span>Entrega</span><strong>${esc(d.id)}</strong></div>
+            <div class="invoice-mini"><span>Estado</span><strong>CONCLUÍDA</strong></div>
+            <div class="invoice-mini"><span>Total</span><strong>${money(d.price)}</strong></div>
+        </div>
+        <div class="invoice-block"><h4>👤 Dados do cliente</h4><div class="invoice-block-body">
+            <div class="invoice-row"><span><strong>Nome:</strong> ${esc(clientName)}</span><span><strong>Telefone:</strong> ${esc(clientPhone)}</span></div>
+            <div class="invoice-row"><span><strong>Localidade:</strong> ${esc(d.clientLocality||"—")}</span><span><strong>ID do cliente:</strong> ${esc(d.clientId||"—")}</span></div>
+        </div></div>
+        <div class="invoice-block"><h4>📦 Dados da entrega</h4><div class="invoice-block-body">
+            <div class="invoice-row"><span><strong>Origem:</strong> ${esc(d.pickup?.zone||"—")}</span><span><strong>Destino:</strong> ${esc(d.destination?.zone||"—")}</span></div>
+            <div class="invoice-row"><span><strong>Remetente:</strong> ${esc(d.pickup?.name||"—")} / ${esc(d.pickup?.phone||"—")}</span><span><strong>Destinatário:</strong> ${esc(d.destination?.name||"—")} / ${esc(d.destination?.phone||"—")}</span></div>
+            <div class="invoice-row"><span><strong>Referência origem:</strong> ${esc(d.pickup?.reference||"—")}</span><span><strong>Referência destino:</strong> ${esc(d.destination?.reference||"—")}</span></div>
+            <div class="invoice-row"><span><strong>Tipo:</strong> ${esc(d.package?.type||"—")}</span><span><strong>Descrição:</strong> ${esc(d.package?.description||"—")}</span></div>
+        </div></div>
+        <div class="invoice-block"><h4>🏍️ Motoboy e pagamento</h4><div class="invoice-block-body">
+            <div class="invoice-row"><span><strong>Motoboy:</strong> ${esc(driverName)}</span><span><strong>Pagamento:</strong> ${d.paymentMethod==="iban"?"IBAN":"MULTICAIXA Express"}</span></div>
+            <div class="invoice-row"><span><strong>Estado do pagamento:</strong> ${d.paymentStatus==="confirmed"?"Confirmado":"Pendente"}</span><span><strong>Valor:</strong> ${money(d.price)}</span></div>
+        </div></div>
+        <div class="invoice-block"><h4>🕘 Histórico completo</h4><div class="invoice-block-body">
+            ${history.length?`<div class="invoice-history">${history.map(h=>`<div class="invoice-history-item"><strong>${esc(h.action||"Operação")}</strong><br><small>${formatDate(h.date)}</small></div>`).join("")}</div>`:'<p class="empty">Sem histórico registado.</p>'}
+        </div></div>
+        <div class="invoice-block"><h4>📅 Registo</h4><div class="invoice-block-body"><div class="invoice-row"><span><strong>Criada:</strong> ${formatDate(d.createdAt)}</span><span><strong>Última atualização:</strong> ${formatDate(d.updatedAt)}</span></div></div></div>
+    `,`<button class="btn btn-primary" onclick="downloadInvoice('${id}')">📄 Baixar PDF</button><button class="btn btn-secondary" onclick="window.print()">🖨️ Imprimir</button><button class="btn btn-danger" onclick="deleteInvoice('${id}');closeModal()">Eliminar</button><button class="btn btn-secondary" onclick="closeModal()">Fechar</button>`);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(title,body,footer=""){
+
+    document.getElementById("modalTitle")
+        .textContent=title;
+
+    document.getElementById("modalBody")
+        .innerHTML=body;
+
+    document.getElementById("modalFooter")
+        .innerHTML=footer;
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("modal")
+        .classList.remove("show");
+
+}
+
+
+document.getElementById("modal")
+    .addEventListener("click",function(e){
+
+        if(e.target===this){
+            closeModal();
+        }
+
+    });
+
+
+/* =========================================================
+   FILTRO
+========================================================= */
+
+function filterDeliveries(type){
+
+    const deliveries=getData(STORAGE.deliveries);
+
+    let filtered=deliveries;
+
+    if(type==="pending"){
+
+        filtered=deliveries.filter(
+            d=>d.status==="pending"
+        );
+
+    }
+
+    if(type==="completed"){
+
+        filtered=deliveries.filter(
+            d=>d.status==="completed"
+        );
+
+    }
+
+    if(type==="cancelled"){
+
+        filtered=deliveries.filter(
+            d=>d.status==="cancelled"
+        );
+
+    }
+
+    const container=
+        document.getElementById(
+            "managerDeliveryList"
+        );
+
+    if(container){
+
+        container.innerHTML=filtered.length
+            ?filtered.map(deliveryCardManager).join("")
+            :`
+                <div class="panel">
+                    <div class="panel-body empty">
+                        Nenhuma entrega encontrada.
+                    </div>
+                </div>
+            `;
+
+    }
+
+}
+
+
+/* =========================================================
+   RECENTES
+========================================================= */
+
+function recentDeliveries(){
+
+    const deliveries=getData(STORAGE.deliveries)
+        .slice(0,5);
+
+    return `
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <h3>Entregas recentes</h3>
+
+                <button class="btn btn-secondary"
+                    onclick="navigate('manager-deliveries')">
+                    Ver todas
+                </button>
+
+            </div>
+
+            <div class="panel-body">
+
+                ${deliveries.length
+                ?`
+                    <div class="table-wrap">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Rota</th>
+                                    <th>Valor</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                            ${deliveries.map(d=>`
+
+                                <tr>
+
+                                    <td>${d.id}</td>
+
+                                    <td>${esc(d.clientName)}</td>
+
+                                    <td>
+                                        ${esc(d.pickup.zone)}
+                                        →
+                                        ${esc(d.destination.zone)}
+                                    </td>
+
+                                    <td>${money(d.price)}</td>
+
+                                    <td>
+                                        ${statusBadge(d.status)}
+                                    </td>
+
+                                </tr>
+
+                            `).join("")}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                `
+                :`
+                    <div class="empty">
+                        Nenhuma entrega registada.
+                    </div>
+                `}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function money(value){
+
+    return Number(value||0).toLocaleString(
+        "pt-AO"
+    )+" Kz";
+
+}
+
+
+function esc(value){
+
+    return String(value??"")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escAttr(value){
+
+    return esc(value);
+
+}
+
+
+function formatDate(date){
+
+    if(!date) return "—";
+
+    return new Date(date).toLocaleString(
+        "pt-AO",
+        {
+            dateStyle:"short",
+            timeStyle:"short"
+        }
+    );
+
+}
+
+
+function statusBadge(status){
+
+    const map={
+
+        pending:["PENDENTE","badge-orange"],
+
+        assigned:["MOTOBOY ATRIBUÍDO","badge-blue"],
+
+        contacting_pickup:["A CONTACTAR RECOLHA","badge-blue"],
+
+        picked_up:["RECOLHA EFETUADA","badge-blue"],
+
+        contacting_recipient:["A CONTACTAR DESTINATÁRIO","badge-blue"],
+
+        ready_delivery:["PRONTA PARA ENTREGA","badge-blue"],
+
+        completed:["CONCLUÍDA","badge-green"],
+
+        cancelled:["CANCELADA","badge-red"]
+
+    };
+
+    const data=
+        map[status] ||
+        ["PENDENTE","badge-orange"];
+
+    return `
+        <span class="badge ${data[1]}">
+            ${data[0]}
+        </span>
+    `;
+
+}
+
+
+function paymentBadge(status){
+
+    if(status==="confirmed"){
+
+        return `
+            <span class="badge badge-green">
+                CONFIRMADO
+            </span>
+        `;
+
+    }
+
+    if(status==="cancelled"){
+
+        return `
+            <span class="badge badge-red">
+                CANCELADO
+            </span>
+        `;
+
+    }
+
+    return `
+        <span class="badge badge-orange">
+            PENDENTE
+        </span>
+    `;
+
+}
+
+
+function step(text,done){
+
+    return `
+        <div class="step ${done?"done":""}">
+            ${done?"✓ ":""}${text}
+        </div>
+    `;
+
+}
+
+
+function emptyPage(icon,title,text){
+
+    return `
+
+        <div class="panel">
+
+            <div class="panel-body empty">
+
+                <div style="font-size:40px">
+                    ${icon}
+                </div>
+
+                <br>
+
+                <h3>${title}</h3>
+
+                <br>
+
+                <p>${text}</p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function toast(message){
+
+    const t=document.getElementById("toast");
+
+    t.textContent=message;
+
+    t.classList.add("show");
+
+    setTimeout(()=>{
+        t.classList.remove("show");
+    },2800);
+
+}
+
+
+/* =========================================================
+   RESTAURAR SESSÃO
+========================================================= */
+
+(function restoreSession(){
+
+    try{
+
+        const saved=
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE.session
+                )
+            );
+
+        if(saved){
+
+            session=saved;
+
+            enterApp();
+
+        }
+
+    }catch{}
+
+})();
+
+</script>
+
+</body>
+</html>
